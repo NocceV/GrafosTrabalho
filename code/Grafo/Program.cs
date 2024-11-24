@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,11 +47,11 @@ namespace Grafo
                 vertice = int.Parse(Console.ReadLine());
             } while (vertice != -1);
 
-            listaAdjacencia(grafo);
+            listaAdjacência(grafo);
             Console.ReadLine();
 
         }
-        public static void listaAdjacencia(Dictionary<int, Dictionary<int, int>> grafo)
+        public static void listaAdjacência(Dictionary<int, Dictionary<int, int>> grafo)
         {
             foreach (var vertice in grafo)
             {
