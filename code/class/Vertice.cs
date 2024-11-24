@@ -7,7 +7,7 @@ namespace code
         private List<Aresta> _arestasVertice;
         private dynamic _objeto;
 
-        //Construtor Padr�o Classe Vertice
+        //Construtor Padrao Classe Vertice
         public Vertice()
         {
             _id = ++_ultimoId;
@@ -15,13 +15,27 @@ namespace code
             _objeto = null;
         }
 
-        //Construtor com Inst�cia de Objeto Din�mico
+        //Construtor com Instacia de Objeto Dinamico
         public Vertice(dynamic objeto)
         {
             _id = ++_ultimoId;
             _arestasVertice = new List<Aresta>();
             _objeto = objeto;
         }
+
+        public List<Vertice> Vizinhanca()
+        {
+            List<Vertice> vizinhanca = new List<Vertice>();
+
+            foreach (Aresta aresta in _arestasVertice)
+            {
+                vizinhanca.Add(aresta.VerticeOrigem);
+            }
+
+            return vizinhanca;
+        }
+
+        public int GrauVertice() { return _arestasVertice.Count; }
 
         public override string ToString()
         {

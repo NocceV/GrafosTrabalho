@@ -8,7 +8,10 @@ namespace code
         private Vertice _verticeOrigem;
         private Vertice _verticeDestino;
 
-        //Construtor Padr�o Classe Aresta
+        public Vertice VerticeOrigem { get { return _verticeOrigem; } }
+
+
+        //Construtor Padrao Classe Aresta
         public Aresta(Vertice verticeOrigem, Vertice verticeDestino, int? peso = null)
         {
             _id = ++_ultimoId;
