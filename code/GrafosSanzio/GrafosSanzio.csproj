@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1E35DA76-47A0-4A41-94C0-DB80CA8EDE2D}</ProjectGuid>
+    <ProjectGuid>{559E156A-8204-4B05-813F-92F0EFEC137A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Grafo</RootNamespace>
-    <AssemblyName>Grafo</AssemblyName>
+    <RootNamespace>GrafosSanzio</RootNamespace>
+    <AssemblyName>GrafosSanzio</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Grafo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
