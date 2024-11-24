@@ -4,14 +4,76 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Grafo
+namespace GrafosSanzio
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD:code/Grafo/Program.cs
             Console.Clear();
             start();
+=======
+            Grafo grafo = new Grafo();
+            Console.WriteLine("Insira o vertice / -1 para sair");
+            int vertice = int.Parse(Console.ReadLine());
+            do
+            {
+                if (grafo.AdicionaVertice(vertice))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Adicionado com sucesso");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Vertice já existe");
+                }
+                Console.WriteLine("Insira o vertice / -1 para sair");
+                vertice = int.Parse(Console.ReadLine());
+            } while (vertice != -1);
+
+
+            Console.WriteLine("Insira qual vértice deseja inserir aresta / -1 para sair");
+            vertice = int.Parse(Console.ReadLine());
+            Console.WriteLine("Insira o vertice de destino e em seguida seu peso");
+            int destino = int.Parse(Console.ReadLine());
+            int peso = int.Parse(Console.ReadLine());
+            do
+            {
+
+                if (grafo.AdicionarAresta(vertice,destino,peso))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Adicionado com sucesso");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Vertice nao existe");
+                }
+
+
+                Console.WriteLine("Insira o vertice / -1 para sair");
+                vertice = int.Parse(Console.ReadLine());
+                if(vertice == -1)
+                {
+                    break; // Solucao pessima -> Consertar pfv
+                }
+                Console.WriteLine("Insira o vertice de destino");
+                destino = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Insira o peso da Aresta");
+                peso = int.Parse(Console.ReadLine());
+
+
+            } while (vertice != -1);
+            
+            Console.Clear();
+            listaAdjacência(grafo.GetAdj());
+            Console.ReadLine();
+
+>>>>>>> 6310ad160a52a32e40e278340c82217687181153:code/GrafosSanzio/Program.cs
         }
 
         public static string menuInicial()
@@ -28,7 +90,12 @@ namespace Grafo
             int codigo;
             do
             {
+<<<<<<< HEAD:code/Grafo/Program.cs
                 try
+=======
+                Console.WriteLine("Vertice: " + vertice.Key + " Adjacencias: ");
+                foreach (var aresta in vertice.Value)
+>>>>>>> 6310ad160a52a32e40e278340c82217687181153:code/GrafosSanzio/Program.cs
                 {
                     Console.WriteLine(menuInicial());
                     codigo = int.Parse(Console.ReadLine());
@@ -122,6 +189,7 @@ namespace Grafo
                         Console.WriteLine("Opção inválida. Tente novamente.");
                         break;
                 }
+                Console.WriteLine("");
             }
         }
 
