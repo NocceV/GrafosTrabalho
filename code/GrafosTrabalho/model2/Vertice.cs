@@ -1,11 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace code
+namespace GrafosTrabalho.model2
 {
     internal class Vertice
     {
@@ -48,5 +47,6 @@ namespace code
         {
             return "v" + Id;
         }
+
     }
 }

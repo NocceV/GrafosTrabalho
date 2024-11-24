@@ -1,12 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace code
+namespace GrafosTrabalho.model2
 {
-    public class Aresta
+    internal class Aresta
     {
         private static int _ultimoId = 0;
         private int _id;
@@ -30,5 +30,6 @@ namespace code
         {
             return _verticeOrigem + " -> " + _verticeDestino;
         }
+
     }
 }

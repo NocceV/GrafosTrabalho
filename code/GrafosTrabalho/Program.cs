@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using GrafosTrabalho.model2;
 
 namespace GrafosTrabalho
 {
@@ -10,7 +12,8 @@ namespace GrafosTrabalho
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("");
+            Vertice vertice = new Vertice();
         }
     }
 }
