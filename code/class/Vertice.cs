@@ -7,20 +7,20 @@ namespace code
         private List<Aresta> _arestasVertice;
         private dynamic _objeto;
 
-        //Construtor Padrão Classe Vertice
+        //Construtor Padrï¿½o Classe Vertice
         public Vertice()
         {
             _id = ++_ultimoId;
             _arestasVertice = new List<Aresta>();
-            dynamic _objeto = null;
+            _objeto = null;
         }
 
-        //Construtor com Instâcia de Objeto Dinâmico
+        //Construtor com Instï¿½cia de Objeto Dinï¿½mico
         public Vertice(dynamic objeto)
         {
             _id = ++_ultimoId;
             _arestasVertice = new List<Aresta>();
-            dynamic _objeto = objeto;
+            _objeto = objeto;
         }
 
         public override string ToString()

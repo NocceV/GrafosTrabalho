@@ -1,6 +1,6 @@
 namespace code
 {
-    internal class Grafo
+    public class Grafo
     {
 
 

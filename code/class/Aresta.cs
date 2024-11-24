@@ -1,6 +1,6 @@
 namespace code
 {
-    internal class Aresta
+    public class Aresta
     {
         private static int _ultimoId = 0;
         private int _id;
@@ -8,7 +8,7 @@ namespace code
         private Vertice _verticeOrigem;
         private Vertice _verticeDestino;
 
-        //Construtor Padrão Classe Aresta
+        //Construtor Padrï¿½o Classe Aresta
         public Aresta(Vertice verticeOrigem, Vertice verticeDestino, int? peso = null)
         {
             _id = ++_ultimoId;
