@@ -58,7 +58,7 @@ namespace GrafosTrabalho
             } while (codigo != 0);
         }
 
-      
+
 
         public static void criarGrafo()
         {
@@ -82,12 +82,12 @@ namespace GrafosTrabalho
                 Console.WriteLine($"Informe o peso da aresta {i}:");
                 double peso = double.Parse(Console.ReadLine());
 
-                
+
                 pesoArestas.Add((verticeOrigem, verticeDestino, peso));
             }
 
 
-            Grafo grafo = new Grafo(numVertices,numArestas,pesoArestas);
+            Grafo grafo = new Grafo(numVertices, numArestas, pesoArestas);
             Console.Clear();
             Console.WriteLine("Grafo criado");
             menuGrafo(grafo);
@@ -119,7 +119,7 @@ namespace GrafosTrabalho
                         break;
                     case 0:
                         Console.WriteLine("Saindo...");
-                        repetidor = false;  
+                        repetidor = false;
                         return;
                     default:
                         Console.WriteLine("Opção inválida. Tente novamente.");
@@ -132,7 +132,7 @@ namespace GrafosTrabalho
         {
             Console.WriteLine("Insira o número do vertice");
             int vertice = int.Parse(Console.ReadLine());
-            if (grafo.AdicionaVertice(vertice) && vertice>0)
+            if (grafo.AdicionaVertice(vertice) && vertice > 0)
             {
                 Console.Clear();
                 Console.WriteLine("Adicionado com sucesso");
@@ -157,7 +157,7 @@ namespace GrafosTrabalho
             Console.WriteLine("Insira o peso da aresta");
             double peso = double.Parse(Console.ReadLine());
 
-            if(grafo.AdicionarAresta(verticeOrigem, verticeDestino, peso){
+            if (grafo.AdicionarAresta(verticeOrigem, verticeDestino, peso){
                 Console.Clear();
                 Console.WriteLine("Adicionado com sucesso");
             }
@@ -170,3 +170,4 @@ namespace GrafosTrabalho
             return true;
         }
     }
+}
