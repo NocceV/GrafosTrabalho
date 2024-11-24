@@ -12,8 +12,7 @@ namespace GrafosTrabalho
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("");
-            Vertice vertice = new Vertice();
+          
         }
     }
 }

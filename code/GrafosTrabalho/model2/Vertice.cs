@@ -45,7 +45,7 @@ namespace GrafosTrabalho.model2
 
         public override string ToString()
         {
-            return "v" + Id;
+            return "v" + _id;
         }
 
     }
