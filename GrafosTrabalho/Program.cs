@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Media;
 
 namespace GrafosTrabalho
 {
@@ -16,6 +17,8 @@ namespace GrafosTrabalho
         {
             try
             {
+                SoundPlayer player = new SoundPlayer("./femur-pipe-falling-the-absurd.mp3");
+                player.Play();
                 Console.Clear();
                 start();
             }
@@ -108,7 +111,7 @@ namespace GrafosTrabalho
 
                 if (calcularDensidade(numVertices, numArestas) >= 0.5)
                 {
-                    grafo = new GrafosMatriz(numVertices, dimic);
+                   // grafo = new GrafosMatriz(numVertices, dimic);
                 }
                 else
                 {
@@ -117,7 +120,7 @@ namespace GrafosTrabalho
 
                 Console.Clear();
                 Console.WriteLine("Grafo criado :D");
-                menuGrafo(grafo);
+                //menuGrafo(grafo);
             }
             catch (Exception ex)
             {
