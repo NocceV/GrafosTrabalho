@@ -9,7 +9,8 @@ Acesso rápido: https://pucminas.instructure.com/courses/204452/assignments/1050
 ![image](https://github.com/user-attachments/assets/e3000db3-dca8-4a6b-af4b-dee8705142e4)
 
 # Plano do sistema - Main
-![image](./PlanoSistema-GrafosTrabalho.png)
+![PlanoSistema-GrafosTrabalho](https://github.com/user-attachments/assets/5b2d7e77-2293-448c-8020-fd7df7d61298)
+
 
 # Arquivo UML
 [Clique aqui para acessar o documento PDF](UMLTrabalhoGrafos.dia)
