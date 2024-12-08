@@ -353,7 +353,7 @@ namespace GrafosTrabalho
                         trocarAdjacencia(grafo);
                         break;
                     case 11:
-                        //peitos
+                        fazerBusca(grafo);
                         break;
                     case 12:
                         //boobs
@@ -818,6 +818,79 @@ namespace GrafosTrabalho
             Adjacencia adjacencia = new Adjacencia(origem, destino, peso);
 
             return adjacencia;
-        } 
+        }
+
+        public static void fazerBusca(IGrafo grafo)
+        {
+            Console.Clear();
+            Console.WriteLine("Qual tipo de busca deseja fazer?");
+            Console.WriteLine("1 - Profundidade");
+            Console.WriteLine("2 - Largura");
+            Console.WriteLine("0 - Sair");
+            int escolha = int.Parse(Console.ReadLine());
+            switch (escolha)
+            {
+
+                case 1:
+                    Console.WriteLine("Informe o vértice inicial");
+                    int n = int.Parse(Console.ReadLine());
+                    List<int> buscaResult = BuscaEmProfundidade(grafo,n);
+                    foreach (int i in buscaResult)
+                    {
+                        Console.Write(i+ " - "); 
+                    }
+                    break;
+                case 2:
+
+                    break;
+                case 0:
+                    Console.Clear();
+                    Console.WriteLine("Saindo...");
+                    Console.WriteLine("Precione Enter");
+                    Console.ReadLine();
+                    return;
+                default:
+                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    break;
+            }
+        }
+
+        public static List<int> BuscaEmProfundidade(IGrafo grafo, int verticeInicial)
+        {
+            if (grafo == null)
+                throw new ArgumentNullException(nameof(grafo), "O grafo não pode ser nulo.");
+
+            if (verticeInicial < 0)
+                throw new ArgumentOutOfRangeException(nameof(verticeInicial), "O vértice inicial deve estar entre os vpértices existentes.");
+
+            var visitados = new HashSet<int>();
+            var resultado = new List<int>();
+            var pilha = new Stack<int>();
+
+            pilha.Push(verticeInicial);
+
+            while (pilha.Count > 0)
+            {
+                int verticeAtual = pilha.Pop();
+
+                if (visitados.Contains(verticeAtual))
+                    continue;
+
+                visitados.Add(verticeAtual);
+                resultado.Add(verticeAtual);
+
+                List<int> vizinhos = grafo.VerticesAdjacentes(verticeAtual);
+                var vizinhosOrdenados = vizinhos.OrderByDescending(v => v).ToList();
+
+                foreach (int vizinho in vizinhosOrdenados)
+                {
+                    if (!visitados.Contains(vizinho))
+                        pilha.Push(vizinho);
+                }
+            }
+
+            return resultado;
+        }
+
     }
 }
