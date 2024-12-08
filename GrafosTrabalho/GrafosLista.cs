@@ -8,8 +8,11 @@ namespace GrafosTrabalho
 {
     internal class GrafosLista : IGrafo
     {
+        #region Atributos
         private List<Adjacencia>[] listaAdj;
+        #endregion
 
+        #region Contrutores
         public GrafosLista(int vertices)
         {
             listaAdj = new List<Adjacencia>[vertices];
@@ -32,7 +35,9 @@ namespace GrafosTrabalho
                 AdicionarAresta(lista[0], lista[1], lista[2]);
             }
         }
+        #endregion
 
+        #region Metodos
         /// <summary>
         /// Adiciona aresta informada pelo user
         /// </summary>
@@ -303,5 +308,6 @@ namespace GrafosTrabalho
                 throw new InvalidOperationException("Erro ao realizar a troca de adjacências.", ex);
             }
         }
+        #endregion
     }
 }

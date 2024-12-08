@@ -8,15 +8,22 @@ namespace GrafosTrabalho
 {
     internal class Adjacencia
     {
+        #region Atributos
         private int origem;
         private int destino;
         private int peso;
+        #endregion
+
+        #region Contrutor
         public Adjacencia(int origem, int destino, int peso)
         {
             this.origem = origem;
             this.destino = destino;
             this.peso = peso;
         }
+        #endregion
+
+        #region Get/Set
         public int getDestino()
         {
             return destino;
@@ -41,7 +48,9 @@ namespace GrafosTrabalho
         {
             this.peso = peso;
         }
+        #endregion
 
+        #region Metodos
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
@@ -52,5 +61,6 @@ namespace GrafosTrabalho
             str.AppendLine("----------------------------");
             return str.ToString();
         }
+        #endregion
     }
 }

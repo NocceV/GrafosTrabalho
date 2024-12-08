@@ -9,6 +9,7 @@ namespace GrafosTrabalho
 {
     internal class Program
     {
+        #region Menus
         /// <summary>
         /// Metodo main que inicia a aplicação/sistema
         /// </summary>
@@ -84,7 +85,9 @@ namespace GrafosTrabalho
             construtorMenu.AppendLine("0) Sair");
             return construtorMenu.ToString();
         }
+        #endregion
 
+        #region Criadores de grafo
         /// <summary>
         /// Após escolher criar o grafo, o usuário informa os detalhes para criar o grafo
         /// (numero de vertices, numero de arestas,peso das arestas)
@@ -278,7 +281,7 @@ namespace GrafosTrabalho
                 Console.ReadLine();
             }
         }
-
+       
         /// <summary>
         /// Metodo de calcular densidade do grafo
         /// </summary>
@@ -290,9 +293,9 @@ namespace GrafosTrabalho
             double densidade = (2 * numArestas) / (numVertices * (numVertices - 1));
             return densidade;
         }
+        #endregion
 
-      
-
+        #region Menu grafo
         /// <summary>
         /// Menu do grafo que leva a várias funcionalidades do sistema
         /// </summary>
@@ -373,7 +376,9 @@ namespace GrafosTrabalho
                 Console.Clear();
             }
         }
+        #endregion
 
+        #region Metodos do menu grafo
         /// <summary>
         /// Metodo de adicionar aresta no grafo
         /// </summary>
@@ -819,7 +824,9 @@ namespace GrafosTrabalho
 
             return adjacencia;
         }
+        #endregion
 
+        #region Buscas
         /// <summary>
         /// Menu com as buscar disponíveis
         /// </summary>
@@ -857,8 +864,6 @@ namespace GrafosTrabalho
                 case 0:
                     Console.Clear();
                     Console.WriteLine("Saindo...");
-                    Console.WriteLine("Precione Enter");
-                    Console.ReadLine();
                     return;
                 default:
                     Console.WriteLine("Opção inválida. Tente novamente.");
@@ -949,6 +954,7 @@ namespace GrafosTrabalho
 
             return resultado;
         }
+        #endregion
 
     }
 }
