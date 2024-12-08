@@ -38,7 +38,6 @@ namespace GrafosTrabalho
             {
                 try
                 {
-                    Console.Clear();
                     Console.WriteLine(menuInicial());
                     if (!int.TryParse(Console.ReadLine(), out codigoEscolha))
                     {
@@ -202,7 +201,9 @@ namespace GrafosTrabalho
                     return;
                 }
 
-                string[] linhas = File.ReadAllLines(caminhoArquivo);
+                string[] linhas = File.ReadAllLines(caminhoArquivo)
+                                      .Where(l => !string.IsNullOrWhiteSpace(l))
+                                      .ToArray();
 
                 if (linhas.Length < 1)
                 {
@@ -210,30 +211,50 @@ namespace GrafosTrabalho
                     return;
                 }
 
-               
-                string[] primeiraLinha = linhas[0].Split(' ');
-                if (primeiraLinha.Length < 2 ||
+                string[] primeiraLinha = linhas[0].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (primeiraLinha.Length != 2 ||
                     !int.TryParse(primeiraLinha[0], out int numVertices) ||
                     !int.TryParse(primeiraLinha[1], out int numArestas))
                 {
-                    Console.WriteLine("Formato inválido na primeira linha.");
+                    Console.WriteLine($"Formato inválido na primeira linha: {linhas[0]}");
                     return;
                 }
 
                 List<List<int>> dimic = new List<List<int>>();
 
-                for (int i = 1; i < linhas.Length; i++)
+                for (int i = 1; i < linhas.Length-1; i++)
                 {
-                    string[] dadosAresta = linhas[i].Split(' ');
-                    if (dadosAresta.Length < 3 ||
-                        !int.TryParse(dadosAresta[0], out int verticeOrigem) ||
+                    // Remove espaços extras e normaliza a linha
+                    string linhaAtual = linhas[i].Trim();
+                    Console.WriteLine($"Processando linha {i + 1}: '{linhaAtual}'"); // Depuração
+
+                    // Ignora linhas vazias
+                    if (string.IsNullOrWhiteSpace(linhaAtual))
+                    {
+                        Console.WriteLine($"Linha {i + 1} está vazia ou contém apenas espaços. Ignorando.");
+                        continue;
+                    }
+
+                    // Divide a linha em partes usando Split
+                    string[] dadosAresta = linhaAtual.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    // Verifica se a linha possui exatamente 3 elementos
+                    if (dadosAresta.Length != 3)
+                    {
+                        Console.WriteLine($"Formato inválido na linha {i + 1}: '{linhaAtual}'");
+                        continue; // Ignora a linha, mas prossegue com as demais
+                    }
+
+                    // Tenta converter os valores para inteiros
+                    if (!int.TryParse(dadosAresta[0], out int verticeOrigem) ||
                         !int.TryParse(dadosAresta[1], out int verticeDestino) ||
                         !int.TryParse(dadosAresta[2], out int peso))
                     {
-                        Console.WriteLine($"Formato inválido na linha {i + 1}.");
-                        return;
+                        Console.WriteLine($"Valores inválidos na linha {i + 1}: '{linhaAtual}'");
+                        continue;
                     }
 
+                    // Adiciona a aresta ao grafo
                     dimic.Add(new List<int> { verticeOrigem, verticeDestino, peso });
                 }
 
@@ -249,15 +270,16 @@ namespace GrafosTrabalho
 
                 Console.Clear();
                 Console.WriteLine("Grafo criado :D");
-                Console.WriteLine("Presione Enter...");
+                Console.WriteLine("Pressione Enter...");
                 Console.ReadLine();
                 Console.Clear();
                 menuGrafo(grafo);
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine($"Erro ao criar grafo: {ex.Message}");
+                Console.WriteLine("Pressione Enter para continuar...");
+                Console.ReadLine();
             }
         }
 
