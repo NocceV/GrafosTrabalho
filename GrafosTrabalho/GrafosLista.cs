@@ -127,7 +127,7 @@ namespace GrafosTrabalho
             catch (ArgumentOutOfRangeException ex)
             {
                 Console.WriteLine($"Erro: {ex.Message}");
-                return new List<int>(); // Retorna uma lista vazia para evitar `null`.
+                return new List<int>(); 
             }
             catch (Exception ex)
             {
@@ -143,13 +143,28 @@ namespace GrafosTrabalho
         /// <returns>Retorna uma lista com as arestas incidentes ao vértice.</returns>
         public List<Adjacencia> ArestasIncidentes(int vertice)
         {
-            if (vertice >= 0 && vertice <= listaAdj.Length)
+            try
             {
+                if (vertice < 0 || vertice >= listaAdj.Length)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(vertice), "O vértice está fora dos limites da lista de adjacência.");
+                }
+
                 List<Adjacencia> adj = new List<Adjacencia>();
                 adj.AddRange(listaAdj[vertice]);
                 return adj;
             }
-            return null;
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
+                return new List<Adjacencia>(); 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado ao buscar arestas incidentes: {ex.Message}");
+                return new List<Adjacencia>();
+            }
+
         }
 
         /// <summary>

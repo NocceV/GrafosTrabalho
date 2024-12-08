@@ -510,7 +510,7 @@ namespace GrafosTrabalho
                 }
 
                 Console.Clear();
-                int vertice = informeVertice(); // Supondo que este método já lida com erros de entrada.
+                int vertice = informeVertice();
 
                 List<int> adj = grafo.VerticesAdjacentes(vertice);
 
@@ -525,7 +525,7 @@ namespace GrafosTrabalho
                     {
                         Console.Write(i.ToString() + " - ");
                     }
-                    Console.WriteLine(); // Adiciona uma quebra de linha no final.
+                    Console.WriteLine();
                 }
             }
             catch (Exception ex)
@@ -540,14 +540,36 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirArestasIncidentes(IGrafo grafo){
 
-            Console.Clear();
-            int vertice = informeVertice();
-            List<Adjacencia> lista = grafo.ArestasIncidentes(vertice);
+            try
+            {
+                if (grafo == null)
+                {
+                    Console.WriteLine("Erro: O grafo fornecido é nulo.");
+                    return;
+                }
 
-            Console.Clear();
-            Console.WriteLine($"Arestas incidentes ao vértice: {vertice} \n");
-            foreach (Adjacencia aresta in lista){
-                Console.WriteLine(aresta.ToString());
+                Console.Clear();
+                int vertice = informeVertice(); 
+
+                List<Adjacencia> lista = grafo.ArestasIncidentes(vertice);
+
+                if (lista == null || lista.Count == 0)
+                {
+                    Console.WriteLine($"Nenhuma aresta incidente encontrada para o vértice {vertice}.");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Arestas incidentes ao vértice {vertice}:\n");
+                    foreach (Adjacencia aresta in lista)
+                    {
+                        Console.WriteLine(aresta.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado ao imprimir arestas incidentes: {ex.Message}");
             }
         }
 
