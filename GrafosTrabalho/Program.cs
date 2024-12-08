@@ -224,7 +224,7 @@ namespace GrafosTrabalho
 
                 List<List<int>> dimic = new List<List<int>>();
 
-                for (int i = 1; i < linhas.Length-1; i++)
+                for (int i = 1; i < linhas.Length; i++)
                 {
                     // Remove espaços extras e normaliza a linha
                     string linhaAtual = linhas[i].Trim();
