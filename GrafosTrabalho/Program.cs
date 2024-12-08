@@ -584,7 +584,7 @@ namespace GrafosTrabalho
                 Console.WriteLine($"Os vértices {vertice1} e {vertice2} são vizinhos");
             }
             else{
-                Console.WriteLine($"Os vértices {vertice1} e {vertice2} não são vizinhos); 
+                Console.WriteLine($"Os vértices {vertice1} e {vertice2} não são vizinhos"); 
             }
 
         }
@@ -595,11 +595,10 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void substituirPesos(IGrafo grafo)
         {
+            Console.Clear();
             int origem = informeVertice();
-            Console.Write(" de origem");
 
             int destino = informeVertice();
-            Console.Write(" de destino");
 
             Console.WriteLine("Informe o peso");
             int peso = int.Parse(Console.ReadLine());
