@@ -174,6 +174,8 @@ namespace GrafosTrabalho
                         continue;
                     }
 
+                    verticeDestino--;
+                    verticeOrigem--;
                     dimic.Add(new List<int> { verticeOrigem, verticeDestino, peso });
                 }
                 catch (Exception ex)
@@ -255,6 +257,8 @@ namespace GrafosTrabalho
                     }
 
                     // Adiciona a aresta ao grafo
+                    verticeDestino--;
+                    verticeOrigem--;
                     dimic.Add(new List<int> { verticeOrigem, verticeDestino, peso });
                 }
 
