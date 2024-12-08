@@ -990,7 +990,26 @@ namespace GrafosTrabalho
                     break;
                 case 2:
                     Console.Clear();
-                    
+                    Console.WriteLine("Informe o vértice inicial:");
+                    int origem = int.Parse(Console.ReadLine());
+
+                    var (distancias, caminhos) = FloydWarshall(grafo, origem);
+
+                    Console.WriteLine($"Caminhos partindo do vértice {origem}:");
+                    for (int i = 0; i < distancias.Length; i++)
+                    {
+                        if (origem == i) continue; 
+
+                        if (caminhos[i] == "Sem caminho")
+                        {
+                            Console.WriteLine($"Não há caminho do vértice {origem} para o vértice {i}.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Menor distância para {i}: {distancias[i]}");
+                            Console.WriteLine($"Caminho: {caminhos[i]}");
+                        }
+                    }
                     break;
                 case 0:
                     Console.Clear();
@@ -1058,6 +1077,35 @@ namespace GrafosTrabalho
             }
 
             return (int.MaxValue, null);
+        }
+
+        /// <summary>
+        /// FloydWarshall
+        /// </summary>
+        /// <param name="origeml">Vertice origem</param>
+        /// <returns>Faz o caminho mínimo utilizando FloydWarshall/returns>
+        public static (int[] distancias, string[] caminhos) FloydWarshall(IGrafo grafo, int origem)
+        {
+            int numVertices = grafo.numVertices();
+            int[] distancias = new int[numVertices];
+            string[] caminhos = new string[numVertices];
+
+            for (int i = 0; i < numVertices; i++)
+            {
+                if (i == origem)
+                {
+                    distancias[i] = 0;
+                    caminhos[i] = $"{origem}";
+                }
+                else
+                {
+                    var (distancia, caminho) = Dijkstra(grafo, origem, i);
+                    distancias[i] = distancia;
+                    caminhos[i] = caminho == null ? "Sem caminho" : string.Join(" -> ", caminho);
+                }
+            }
+
+            return (distancias, caminhos);
         }
         #endregion
     }

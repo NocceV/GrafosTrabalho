@@ -308,6 +308,15 @@ namespace GrafosTrabalho
                 throw new InvalidOperationException("Erro ao realizar a troca de adjacências.", ex);
             }
         }
+
+        /// <summary>
+        /// Get numero de vertices do grafo
+        /// </summary>
+        /// <returns>Número de vértices.</returns>
+        public int numVertices()
+        {
+            return listaAdj.Length;
+        }
         #endregion
     }
 }

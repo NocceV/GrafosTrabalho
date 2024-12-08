@@ -84,5 +84,11 @@ namespace GrafosTrabalho
         /// /// <param name="vertic2">vertice2.</param>
         /// <returns>Retorna true caso a troca foi efetuada com sucesso e falso se não</returns>
         bool TrocarAdjacencias(int vertice, int vertice2);
+
+        /// <summary>
+        /// Get numero de vertices do grafo
+        /// </summary>
+        /// <returns>Número de vértices.</returns>
+        int numVertices();
     }
 }

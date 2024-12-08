@@ -87,5 +87,10 @@ namespace GrafosTrabalho
         {
             return null;
         }
+
+        public int numVertices()
+        {
+            return 0;
+        }
     }
 }
