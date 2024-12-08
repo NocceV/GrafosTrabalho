@@ -134,7 +134,7 @@ namespace GrafosTrabalho
             }
         }
 
-        
+        //Criar grafo a partir de arquivo dimac
         public static void criarGrafoDimac()
         {
             try
@@ -381,7 +381,7 @@ namespace GrafosTrabalho
             }
         }
 
-        
+        ///Imprimi as arestas Adjacentes 
         public static void imprimirArestasAdjacentes(IGrafo grafo)
         {
             Adjacencia adjacencia = criarAdjacencia();
@@ -392,11 +392,13 @@ namespace GrafosTrabalho
             
         }
 
+        //Imprimi os vertices adjacentes
         public static void imprimirVerticesAdjacentes(IGrafo grafo)
         {
 
         }
 
+        //Imprimi as arestas incidentes
         public static void imprimirArestasIncidentes(IGrafo grafo){
 
             int vertice = informeVertice();
@@ -406,6 +408,7 @@ namespace GrafosTrabalho
             }
         }
 
+        //Imprimi os vertices incidentes
         public static void imprimirVerticesIncidentes(IGrafo grafo)
         {
             Console.WriteLine("Informe origem");
@@ -420,12 +423,47 @@ namespace GrafosTrabalho
            }
         }
 
+        //Imprimir o grau do vertice
+        public static void imprimirGrauVertice(IGrafo grafo)
+        {
+            int vertice = informeVertice();
+            Console.WriteLine(grafo.GrauVertice(vertice));
+        }
 
 
+        //Determinar se vertices sao adjacentes
+        public static void determinarAdjacencia(IGrafo grafo){
 
+            int vertice1 = informeVertice();
+            Console.Write(" 1");
 
+            int vertice2 = informeVertice();
+            Console.Write(" 2");
 
+            bool resposta = grafo.VerificarVizinhos(vertice1, vertice2);
+            if (resposta): { Console.WriteLine("Vértices são vizinhos");}
+            else?:{ Console.WriteLine("Vértices não são vizinhos"); }
 
+        }
+        
+        //Troca o peso da aresta
+        public static void substituirPesos(IGrafo grafo)
+        {
+            Adjacencia adj = criarAdjacencia();
+            bool sucesso = grafo.TrocarPeso(adj);
+        }
+
+        //troca de adjacecia
+        public static void trocarAdjacencia(IGrafo grafo)
+        {
+            int vertice1 = informeVertice();
+            Console.Write(" 1");
+
+            int vertice2 = informeVertice();
+            Console.Write(" 2");
+
+            bool sucesso = grafo.TrocarAdjacencias(vertice1, vertice2);
+        }
 
 
 
