@@ -820,6 +820,9 @@ namespace GrafosTrabalho
             return adjacencia;
         }
 
+        /// <summary>
+        /// Menu com as buscar disponíveis
+        /// </summary>
         public static void fazerBusca(IGrafo grafo)
         {
             Console.Clear();
@@ -832,16 +835,24 @@ namespace GrafosTrabalho
             {
 
                 case 1:
+                    Console.Clear();
                     Console.WriteLine("Informe o vértice inicial");
-                    int n = int.Parse(Console.ReadLine());
-                    List<int> buscaResult = BuscaEmProfundidade(grafo,n);
-                    foreach (int i in buscaResult)
+                    int n1 = int.Parse(Console.ReadLine());
+                    List<int> buscaResult1 = BuscaEmProfundidade(grafo,n1);
+                    foreach (int i in buscaResult1)
                     {
                         Console.Write(i+ " - "); 
                     }
                     break;
                 case 2:
-
+                    Console.Clear();
+                    Console.WriteLine("Informe o vértice inicial");
+                    int n2 = int.Parse(Console.ReadLine());
+                    List<int> buscaResult2 = BuscaEmLargura(grafo, n2);
+                    foreach (int i in buscaResult2)
+                    {
+                        Console.Write(i + " - ");
+                    }
                     break;
                 case 0:
                     Console.Clear();
@@ -855,6 +866,11 @@ namespace GrafosTrabalho
             }
         }
 
+        /// <summary>
+        /// Busca em profundidade
+        /// </summary>
+        /// <param name="verticeInicial">Vértice inicial.</param>
+        /// <returns>Retorna lista com a busca em profundidade realizada.</returns>
         public static List<int> BuscaEmProfundidade(IGrafo grafo, int verticeInicial)
         {
             if (grafo == null)
@@ -886,6 +902,48 @@ namespace GrafosTrabalho
                 {
                     if (!visitados.Contains(vizinho))
                         pilha.Push(vizinho);
+                }
+            }
+
+            return resultado;
+        }
+
+        /// <summary>
+        /// Busca em largura
+        /// </summary>
+        /// <param name="verticeInicial">Vértice inicial.</param>
+        /// <returns>Retorna lista com a busca em largura realizada.</returns>
+        public static List<int> BuscaEmLargura(IGrafo grafo, int verticeInicial)
+        {
+            if (grafo == null)
+                throw new ArgumentNullException(nameof(grafo), "O grafo não pode ser nulo.");
+
+            if (verticeInicial < 0)
+                throw new ArgumentOutOfRangeException(nameof(verticeInicial), "O vértice inicial deve estar entre os vpértices existentes.");
+
+            var visitados = new HashSet<int>();
+            var resultado = new List<int>();
+            var fila = new Queue<int>();
+
+            fila.Enqueue(verticeInicial);
+            visitados.Add(verticeInicial);
+
+            while (fila.Count > 0)
+            {
+                int verticeAtual = fila.Dequeue();
+
+                resultado.Add(verticeAtual);
+
+                var vizinhos = grafo.VerticesAdjacentes(verticeAtual);
+                var vizinhosOrdenados = vizinhos.OrderByDescending(v => v).ToList();
+
+                foreach (int vizinho in vizinhos)
+                {
+                    if (!visitados.Contains(vizinho))
+                    {
+                        visitados.Add(vizinho);
+                        fila.Enqueue(vizinho);
+                    }
                 }
             }
 
