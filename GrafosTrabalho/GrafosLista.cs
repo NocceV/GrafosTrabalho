@@ -63,7 +63,7 @@ namespace GrafosTrabalho
                 sb.Append(i + " -> ");
                 foreach (Adjacencia aresta in listaAdj[i])
                 {
-                    sb.Append(aresta.getDestino() + " Peso: " + aresta.getPeso());
+                    sb.Append(aresta.getDestino() + " Peso: " + aresta.getPeso() + " - ");
                 }
                 sb.AppendLine();
             }
@@ -77,14 +77,33 @@ namespace GrafosTrabalho
         /// <returns>Retorna uma lista de arestas com as arestas adjacentes a aresta E.</returns>
         public List<Adjacencia> ArestasAdjacentes(Adjacencia aresta)
         {
-            if (aresta.getDestino() <= listaAdj.Length && aresta.getOrigem() > 0)
+            try
             {
+                if (aresta == null)
+                {
+                    throw new ArgumentNullException(nameof(aresta), "A aresta fornecida é nula.");
+                }
+
+                if (aresta.getDestino() >= listaAdj.Length || aresta.getDestino() < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(aresta), "O destino da aresta está fora dos limites da lista de adjacência.");
+                }
+
+                if (aresta.getOrigem() >= listaAdj.Length || aresta.getOrigem() < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(aresta), "A origem da aresta está fora dos limites da lista de adjacência.");
+                }
+
                 List<Adjacencia> adj = new List<Adjacencia>();
                 adj.AddRange(listaAdj[aresta.getDestino()]);
                 adj.AddRange(listaAdj[aresta.getOrigem()]);
                 return adj;
             }
-            return null;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao buscar arestas adjacentes: {ex.Message}");
+                return null;
+            }
         }
 
         /// <summary>

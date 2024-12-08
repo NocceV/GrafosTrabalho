@@ -457,15 +457,44 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirArestasAdjacentes(IGrafo grafo)
         {
-            Adjacencia adjacencia = criarAdjacencia();
-            List<Adjacencia> lista = grafo.ArestasAdjacentes(adjacencia);
-
-            Console.Clear();
-            Console.WriteLine("Arestas adjacentes: ");
-            foreach (Adjacencia aresta in lista){
-                aresta.ToString();
-            }
             
+            try
+            {
+                if (grafo == null)
+                {
+                    Console.WriteLine("Erro: O grafo informado é nulo.");
+                    return;
+                }
+
+                Adjacencia adjacencia = criarAdjacencia();
+                if (adjacencia == null)
+                {
+                    Console.WriteLine("Erro: Não foi possível criar a aresta informada.");
+                    return;
+                }
+
+                List<Adjacencia> lista = grafo.ArestasAdjacentes(adjacencia);
+                Console.Clear();
+
+                if (lista == null || lista.Count == 0)
+                {
+                    Console.WriteLine("\nA aresta informada não possui arestas adjacentes.");
+                }
+                else
+                {
+                    Console.WriteLine("Ok, vamos imprimir as arestas adjacentes da aresta informada:");
+                    Console.WriteLine("Arestas adjacentes: \n");
+                    foreach (Adjacencia aresta in lista)
+                    {
+                        Console.WriteLine(aresta.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao imprimir arestas adjacentes: {ex.Message}");
+            }
+
         }
 
         /// <summary>
