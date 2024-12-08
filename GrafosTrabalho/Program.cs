@@ -400,5 +400,33 @@ namespace GrafosTrabalho
                 Console.WriteLine($"Erro ao listar o grafo: {ex.Message}");
             }
         }
+
+
+        public static void imprimirArestasAdjacentes(IGrafo grafo)
+        {
+            Adjacencia adjacencia = criarAdjacencia();
+            List<Adjacencia> lista = grafo.ArestasAdjacentes(adjacencia);
+            foreach Adjacencia aresta in lista{
+                aresta.ToString();
+            }
+            
+        }
+
+        public static Adjacencia criarAdjacencia()
+        {
+            Console.Clear();
+            Console.WriteLine("Informe o vértice de origem da aresta");
+            int origem = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Informe o vértice de destino da aresta");
+            int destino = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Informe o peso da aresta");
+            int peso = int.Parse(Console.ReadLine());
+
+            Adjacencia adjacencia = new Adjacencia(origem, destino, peso);
+
+            return adjacencia;
+        } 
     }
 }

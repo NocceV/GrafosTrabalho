@@ -41,5 +41,16 @@ namespace GrafosTrabalho
         {
             this.peso = peso;
         }
+
+        public override string ToString()
+        {
+            StringBuilder str = new StringBuilder();
+            str.AppendLine("----------------------------");
+            str.AppendLine("Origem - "+origem);
+            str.AppendLine("Destino - "+destino);
+            str.AppendLine("Peso - "+peso);
+            str.AppendLine("----------------------------");
+            return str.ToString();
+        }
     }
 }
