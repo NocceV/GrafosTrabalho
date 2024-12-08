@@ -38,6 +38,7 @@ namespace GrafosTrabalho
             {
                 try
                 {
+                    Console.Clear();
                     Console.WriteLine(menuInicial());
                     if (!int.TryParse(Console.ReadLine(), out codigoEscolha))
                     {
@@ -137,6 +138,56 @@ namespace GrafosTrabalho
         }
 
         /// <summary>
+        /// Cria as informações do grafo com base no modelo dimic
+        /// </summary>
+        /// <param name="numVertices">Número de vértices</param>
+        /// <param name="numArestas">Número de arestas</param>
+        /// <returns>Retorna lista com base no modelo dimic</returns>
+        public static List<List<int>> criarDimac(int numVertices, int numArestas)
+        {
+            List<List<int>> dimic = new List<List<int>>();
+
+            for (int i = 1; i <= numArestas; i++)
+            {
+                try
+                {
+                    Console.WriteLine($"Informe o vértice de origem da aresta {i}:");
+                    if (!int.TryParse(Console.ReadLine(), out int verticeOrigem) || verticeOrigem < 0 || verticeOrigem >= numVertices)
+                    {
+                        Console.WriteLine("Vértice de origem inválido.");
+                        i--;
+                        continue;
+                    }
+
+                    Console.WriteLine($"Informe o vértice de destino da aresta {i}:");
+                    if (!int.TryParse(Console.ReadLine(), out int verticeDestino) || verticeDestino < 0 || verticeDestino >= numVertices)
+                    {
+                        Console.WriteLine("Vértice de destino inválido.");
+                        i--;
+                        continue;
+                    }
+
+                    Console.WriteLine($"Informe o peso da aresta {i}:");
+                    if (!int.TryParse(Console.ReadLine(), out int peso) || peso < 0)
+                    {
+                        Console.WriteLine("Peso inválido.");
+                        i--;
+                        continue;
+                    }
+
+                    dimic.Add(new List<int> { verticeOrigem, verticeDestino, peso });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao processar a aresta {i}: {ex.Message}");
+                    i--;
+                }
+            }
+
+            return dimic;
+        }
+
+        /// <summary>
         /// Cria grafo a partir de arquivo DIMAC.
         /// </summary>
         public static void criarGrafoDimac()
@@ -222,55 +273,7 @@ namespace GrafosTrabalho
             return densidade;
         }
 
-        /// <summary>
-        /// Cria as informações do grafo com base no modelo dimic
-        /// </summary>
-        /// <param name="numVertices">Número de vértices</param>
-        /// <param name="numArestas">Número de arestas</param>
-        /// <returns>Retorna lista com base no modelo dimic</returns>
-        public static List<List<int>> criarDimac(int numVertices, int numArestas)
-        {
-            List<List<int>> dimic = new List<List<int>>();
-
-            for (int i = 1; i <= numArestas; i++)
-            {
-                try
-                {
-                    Console.WriteLine($"Informe o vértice de origem da aresta {i}:");
-                    if (!int.TryParse(Console.ReadLine(), out int verticeOrigem) || verticeOrigem < 0 || verticeOrigem >= numVertices)
-                    {
-                        Console.WriteLine("Vértice de origem inválido.");
-                        i--;
-                        continue;
-                    }
-
-                    Console.WriteLine($"Informe o vértice de destino da aresta {i}:");
-                    if (!int.TryParse(Console.ReadLine(), out int verticeDestino) || verticeDestino < 0 || verticeDestino >= numVertices)
-                    {
-                        Console.WriteLine("Vértice de destino inválido.");
-                        i--;
-                        continue;
-                    }
-
-                    Console.WriteLine($"Informe o peso da aresta {i}:");
-                    if (!int.TryParse(Console.ReadLine(), out int peso) || peso < 0)
-                    {
-                        Console.WriteLine("Peso inválido.");
-                        i--;
-                        continue;
-                    }
-
-                    dimic.Add(new List<int> { verticeOrigem, verticeDestino, peso });
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Erro ao processar a aresta {i}: {ex.Message}");
-                    i--;
-                }
-            }
-
-            return dimic;
-        }
+      
 
         /// <summary>
         /// Menu do grafo que leva a várias funcionalidades do sistema
