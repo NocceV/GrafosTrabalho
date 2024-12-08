@@ -219,11 +219,14 @@ namespace GrafosTrabalho
         /// <returns>True se são vizinhos, False caso contrário.</returns>
         public bool VerificarVizinhos(int vertice, int vertice2)
         {
-            if ((vertice >= 0 && vertice <= listaAdj.Length) && (vertice >= 0 && vertice <= listaAdj.Length))
-            {
-                return listaAdj[vertice].Any(l => l.getDestino() == vertice2) || listaAdj[vertice2].Any(l => l.getDestino() == vertice);
-            }
-            return false;
+            if (vertice < 0 || vertice >= listaAdj.Length)
+                throw new ArgumentOutOfRangeException(nameof(vertice), $"O vértice {vertice} está fora do intervalo permitido.");
+
+            if (vertice2 < 0 || vertice2 >= listaAdj.Length)
+                throw new ArgumentOutOfRangeException(nameof(vertice2), $"O vértice {vertice2} está fora do intervalo permitido.");
+
+            return listaAdj[vertice]?.Any(l => l.getDestino() == vertice2) == true ||
+                   listaAdj[vertice2]?.Any(l => l.getDestino() == vertice) == true;
         }
 
         /// <summary>

@@ -668,20 +668,37 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void determinarAdjacencia(IGrafo grafo){
 
-            Console.Clear();
-            int vertice1 = informeVertice();
+            try
+            {
+                Console.Clear();
+                if (grafo == null)
+                {
+                    Console.WriteLine("Erro: O grafo não foi inicializado.");
+                    return;
+                }
 
-            int vertice2 = informeVertice();
+                int vertice1 = informeVertice();
+                int vertice2 = informeVertice();
 
-            Console.Clear();
-            bool resposta = grafo.VerificarVizinhos(vertice1, vertice2);
-            if (resposta){
-                Console.WriteLine($"Os vértices {vertice1} e {vertice2} são vizinhos");
+                bool resposta = grafo.VerificarVizinhos(vertice1, vertice2);
+                Console.Clear();
+                if (resposta)
+                {
+                    Console.WriteLine($"Os vértices {vertice1} e {vertice2} são vizinhos.");
+                }
+                else
+                {
+                    Console.WriteLine($"Os vértices {vertice1} e {vertice2} não são vizinhos.");
+                }
             }
-            else{
-                Console.WriteLine($"Os vértices {vertice1} e {vertice2} não são vizinhos"); 
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
             }
-
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado: {ex.Message}");
+            }
         }
 
         /// <summary>
