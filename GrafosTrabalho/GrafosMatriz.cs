@@ -85,7 +85,7 @@ namespace GrafosTrabalho
 
         public List<int> VerticesAdjacentes(int vertice)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }
