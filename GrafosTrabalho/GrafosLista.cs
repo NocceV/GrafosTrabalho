@@ -203,11 +203,12 @@ namespace GrafosTrabalho
         /// <returns>Retorna o grau do vértice.</returns>
         public int GrauVertice(int vertice)
         {
-            if (vertice >= 0 && vertice <= listaAdj.Length)
+            if (vertice < 0 || vertice >= listaAdj.Length)
             {
-                return listaAdj[vertice].Count();
+                throw new ArgumentOutOfRangeException(nameof(vertice), "O vértice está fora do intervalo válido.");
             }
-            return 0;
+
+            return listaAdj[vertice]?.Count() ?? 0;
         }
 
         /// <summary>

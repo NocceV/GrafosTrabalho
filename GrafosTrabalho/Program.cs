@@ -632,12 +632,33 @@ namespace GrafosTrabalho
         /// </summary>
         /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirGrauVertice(IGrafo grafo)
-        {     
-            Console.Clear();
-            int vertice = informeVertice();
+        {
+            try
+            {
+                Console.Clear();
+             
+                if (grafo == null)
+                {
+                    Console.WriteLine("Erro: O grafo não foi inicializado.");
+                    return;
+                }
+       
+                int vertice = informeVertice();
+    
+                if (vertice < 0 )
+                {
+                    Console.WriteLine($"Erro: O vértice {vertice} é inválido.");
+                    return;
+                }
 
-            Console.Clear();
-            Console.WriteLine($"Grau do vértice {vertice} = "+ grafo.GrauVertice(vertice));
+                Console.Clear();
+
+                Console.WriteLine($"Grau do vértice {vertice} = " + grafo.GrauVertice(vertice));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado: {ex.Message}");
+            }
         }
 
 
