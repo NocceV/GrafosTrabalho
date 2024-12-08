@@ -376,7 +376,7 @@ namespace GrafosTrabalho
                         break;
 
                 }
-                Console.WriteLine("Presione Enter");
+                Console.WriteLine("\nPresione Enter");
                 Console.ReadLine();
                 Console.Clear();
             }
@@ -503,7 +503,14 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirVerticesAdjacentes(IGrafo grafo)
         {
-
+            Console.Clear();   
+            int vertice = informeVertice();
+            List<int> adj = grafo.VerticesAdjacentes(vertice);
+            Console.WriteLine($"Vértices adjacentes ao vértice {vertice}");
+            foreach (int i in adj)
+            {
+                Console.Write(" - "+i.ToString()+ " - ");
+            }
         }
 
         /// <summary>

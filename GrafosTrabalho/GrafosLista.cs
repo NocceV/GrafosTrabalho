@@ -223,6 +223,11 @@ namespace GrafosTrabalho
             return false;
         }
 
+        /// <summary>
+        /// Imprimir vertices adjacentes
+        /// </summary>
+        /// <param name="vertice">Vértice.</param>
+        /// <returns>Lista com vertices adjacentes.</returns>
         public List<int> VerticesAdjacentes(int vertice)
         {
             if(vertice >= 0 && vertice <= listaAdj.Length)
