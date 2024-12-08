@@ -23,7 +23,6 @@ namespace GrafosTrabalho
         /// </summary>
         /// <returns>String representando o grafo.</returns>
         string ToString();
-
         
         List<Adjacencia> ArestasAdjacentes(Adjacencia aresta);
         List<Adjacencia> ArestasIncidentes(int vertice);

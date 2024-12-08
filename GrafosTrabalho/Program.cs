@@ -134,7 +134,9 @@ namespace GrafosTrabalho
             }
         }
 
-        //Criar grafo a partir de arquivo dimac
+        /// <summary>
+        /// Cria grafo a partir de arquivo DIMAC.
+        /// </summary>
         public static void criarGrafoDimac()
         {
             try
@@ -266,7 +268,7 @@ namespace GrafosTrabalho
         }
 
         /// <summary>
-        /// Menu do grafo
+        /// Menu do grafo que leva a várias funcionalidades do sistema
         /// </summary>
         /// <param name="grafo">Grafo em forma de lista ou matriz</param>
         public static void menuGrafo(IGrafo grafo)
@@ -300,7 +302,34 @@ namespace GrafosTrabalho
                         listarGrafo(grafo);
                         break;
                     case 3:
-                        
+                        imprimirArestasAdjacentes(grafo);
+                        break;
+                    case 4:
+                        imprimirVerticesAdjacentes(grafo);
+                        break;
+                    case 5:
+                        imprimirArestasIncidentes(grafo);
+                        break;
+                    case 6:
+                        imprimirVerticesIncidentes(grafo);
+                        break;
+                    case 7:
+                        imprimirGrauVertice(grafo);
+                        break;
+                    case 8:
+                        determinarAdjacencia(grafo);
+                        break;
+                    case 9:
+                        substituirPesos(grafo);
+                        break;
+                    case 10:
+                        trocarAdjacencia(grafo);
+                        break;
+                    case 11:
+                        //peitos
+                        break;
+                    case 12:
+                        //boobs
                         break;
                     case 0:
                         Console.Clear();
@@ -381,7 +410,10 @@ namespace GrafosTrabalho
             }
         }
 
-        ///Imprimi as arestas Adjacentes 
+        /// <summary>
+        /// Imprime as arestas adjacentes de determinada aresta.
+        /// </summary>
+        /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirArestasAdjacentes(IGrafo grafo)
         {
             Adjacencia adjacencia = criarAdjacencia();
@@ -392,13 +424,19 @@ namespace GrafosTrabalho
             
         }
 
-        //Imprimi os vertices adjacentes
+        /// <summary>
+        /// Imprimeos vértices adjacentes de determinada aresta.
+        /// </summary>
+        /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirVerticesAdjacentes(IGrafo grafo)
         {
 
         }
 
-        //Imprimi as arestas incidentes
+        /// <summary>
+        /// Imprime as arestas incidentes de determinado vértice.
+        /// </summary>
+        /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirArestasIncidentes(IGrafo grafo){
 
             int vertice = informeVertice();
@@ -408,7 +446,10 @@ namespace GrafosTrabalho
             }
         }
 
-        //Imprimi os vertices incidentes
+        /// <summary>
+        /// Imprime os vértices incidentes de cada vértice passado.
+        /// </summary>
+        /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirVerticesIncidentes(IGrafo grafo)
         {
             Console.WriteLine("Informe origem");
@@ -423,7 +464,10 @@ namespace GrafosTrabalho
            }
         }
 
-        //Imprimir o grau do vertice
+        /// <summary>
+        /// Imprime o grau do vértice.
+        /// </summary>
+        /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirGrauVertice(IGrafo grafo)
         {
             int vertice = informeVertice();
@@ -431,7 +475,10 @@ namespace GrafosTrabalho
         }
 
 
-        //Determinar se vertices sao adjacentes
+        /// <summary>
+        /// Informa se dois vértices são adjacentes.
+        /// </summary>
+        /// <param name="grafo">Interface Grafo.</param>
         public static void determinarAdjacencia(IGrafo grafo){
 
             int vertice1 = informeVertice();
@@ -445,15 +492,21 @@ namespace GrafosTrabalho
             else?:{ Console.WriteLine("Vértices não são vizinhos"); }
 
         }
-        
-        //Troca o peso da aresta
+
+        /// <summary>
+        /// Troca o peso de uma aresta existente
+        /// </summary>
+        /// <param name="grafo">Interface Grafo.</param>
         public static void substituirPesos(IGrafo grafo)
         {
             Adjacencia adj = criarAdjacencia();
             bool sucesso = grafo.TrocarPeso(adj);
         }
 
-        //troca de adjacecia
+        /// <summary>
+        /// Troca as adjacentes entre dois vértices.
+        /// </summary>
+        /// <param name="grafo">Interface Grafo.</param>
         public static void trocarAdjacencia(IGrafo grafo)
         {
             int vertice1 = informeVertice();
@@ -465,8 +518,10 @@ namespace GrafosTrabalho
             bool sucesso = grafo.TrocarAdjacencias(vertice1, vertice2);
         }
 
-
-
+        /// <summary>
+        /// Metodo para capturar um vértice determinado pelo usuário.
+        /// </summary>
+        /// <returns>Número do vértice</returns>
         public static int informeVertice()
         {
             Console.WriteLine("Informe o vértice");
@@ -474,6 +529,10 @@ namespace GrafosTrabalho
             return vertice;
         }
 
+        /// <summary>
+        /// Criar uma aresta.
+        /// </summary>
+        /// <returns>Retorna uma aresta</returns>
         public static Adjacencia criarAdjacencia()
         {
             Console.Clear();
