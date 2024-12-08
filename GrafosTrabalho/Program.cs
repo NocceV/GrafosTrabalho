@@ -314,26 +314,6 @@ namespace GrafosTrabalho
             }
         }
 
-        /* Iremos adicionar vertices?
-        public static bool addVertice(IGrafo grafo)
-        {
-            Console.WriteLine("Insira o número do vertice");
-            int vertice = int.Parse(Console.ReadLine());
-            if (grafo.AdicionarVertice(vertice) && vertice > 0)
-            {
-                Console.Clear();
-                Console.WriteLine("Adicionado com sucesso");
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Vertice nao existe");
-                return false;
-            }
-            return true;
-        }
-        */
-
         /// <summary>
         /// Metodo de adicionar aresta no grafo
         /// </summary>
@@ -401,7 +381,7 @@ namespace GrafosTrabalho
             }
         }
 
-
+        
         public static void imprimirArestasAdjacentes(IGrafo grafo)
         {
             Adjacencia adjacencia = criarAdjacencia();
@@ -410,6 +390,50 @@ namespace GrafosTrabalho
                 aresta.ToString();
             }
             
+        }
+
+        public static void imprimirVerticesAdjacentes(IGrafo grafo)
+        {
+
+        }
+
+        public static void imprimirArestasIncidentes(IGrafo grafo){
+
+            int vertice = informeVertice();
+            List<Adjacencia> lista grafo.ArestasIncidentes(vertice);
+            foreach Adjacencia aresta in lista{
+                aresta.ToString();
+            }
+        }
+
+        public static void imprimirVerticesIncidentes(IGrafo grafo)
+        {
+            Console.WriteLine("Informe origem");
+            int origem = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Informe destino");
+            int destino = int.Parse(Console.ReadLine());
+
+           List<int> lista = grafo.VerticesIncidentes(origem, destino);
+           foreach int vertices in lista{
+              Console.WriteLine(vertices.ToString());   
+           }
+        }
+
+
+
+
+
+
+
+
+
+
+        public static int informeVertice()
+        {
+            Console.WriteLine("Informe o vértice");
+            int vertice = int.Parse(Console.ReadLine());
+            return vertice;
         }
 
         public static Adjacencia criarAdjacencia()
