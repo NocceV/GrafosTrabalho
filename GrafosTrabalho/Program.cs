@@ -558,12 +558,12 @@ namespace GrafosTrabalho
         /// </summary>
         /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirGrauVertice(IGrafo grafo)
-        {        
+        {     
+            Console.Clear();
             int vertice = informeVertice();
 
             Console.Clear();
-            Console.WriteLine("Grau do vértice: ");
-            Console.WriteLine(grafo.GrauVertice(vertice));
+            Console.WriteLine($"Grau do vértice {vertice} = "+ grafo.GrauVertice(vertice));
         }
 
 
