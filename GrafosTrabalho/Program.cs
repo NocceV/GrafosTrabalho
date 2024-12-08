@@ -509,7 +509,7 @@ namespace GrafosTrabalho
             Console.WriteLine($"Vértices adjacentes ao vértice {vertice}");
             foreach (int i in adj)
             {
-                Console.Write(" - "+i.ToString()+ " - ");
+                Console.Write(i.ToString()+ " - ");
             }
         }
 
@@ -519,13 +519,14 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirArestasIncidentes(IGrafo grafo){
 
+            Console.Clear();
             int vertice = informeVertice();
             List<Adjacencia> lista = grafo.ArestasIncidentes(vertice);
 
             Console.Clear();
-            Console.WriteLine($"Arestas incidentes ao vértice: {vertice} ");
+            Console.WriteLine($"Arestas incidentes ao vértice: {vertice} \n");
             foreach (Adjacencia aresta in lista){
-                aresta.ToString();
+                Console.WriteLine(aresta.ToString());
             }
         }
 
