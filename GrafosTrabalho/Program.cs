@@ -573,19 +573,18 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void determinarAdjacencia(IGrafo grafo){
 
+            Console.Clear();
             int vertice1 = informeVertice();
-            Console.Write(" 1");
 
             int vertice2 = informeVertice();
-            Console.Write(" 2");
 
             Console.Clear();
             bool resposta = grafo.VerificarVizinhos(vertice1, vertice2);
             if (resposta){
-                Console.WriteLine("Vértices são vizinhos");
+                Console.WriteLine($"Os vértices {vertice1} e {vertice2} são vizinhos");
             }
             else{
-                Console.WriteLine("Vértices não são vizinhos"); 
+                Console.WriteLine($"Os vértices {vertice1} e {vertice2} não são vizinhos); 
             }
 
         }
