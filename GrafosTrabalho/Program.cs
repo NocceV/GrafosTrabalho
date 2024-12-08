@@ -174,8 +174,6 @@ namespace GrafosTrabalho
                         continue;
                     }
 
-                    //verticeDestino--;
-                    //verticeOrigem--;
                     dimic.Add(new List<int> { verticeOrigem, verticeDestino, peso });
                 }
                 catch (Exception ex)
@@ -503,13 +501,36 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirVerticesAdjacentes(IGrafo grafo)
         {
-            Console.Clear();   
-            int vertice = informeVertice();
-            List<int> adj = grafo.VerticesAdjacentes(vertice);
-            Console.WriteLine($"Vértices adjacentes ao vértice {vertice}");
-            foreach (int i in adj)
+            try
             {
-                Console.Write(i.ToString()+ " - ");
+                if (grafo == null)
+                {
+                    Console.WriteLine("Erro: O grafo fornecido é nulo.");
+                    return;
+                }
+
+                Console.Clear();
+                int vertice = informeVertice(); // Supondo que este método já lida com erros de entrada.
+
+                List<int> adj = grafo.VerticesAdjacentes(vertice);
+
+                if (adj == null || adj.Count == 0)
+                {
+                    Console.WriteLine($"Nenhum vértice adjacente encontrado para o vértice {vertice}.");
+                }
+                else
+                {
+                    Console.WriteLine($"Vértices adjacentes ao vértice {vertice}:");
+                    foreach (int i in adj)
+                    {
+                        Console.Write(i.ToString() + " - ");
+                    }
+                    Console.WriteLine(); // Adiciona uma quebra de linha no final.
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado ao imprimir os vértices adjacentes: {ex.Message}");
             }
         }
 

@@ -107,6 +107,36 @@ namespace GrafosTrabalho
         }
 
         /// <summary>
+        /// Imprimir vertices adjacentes
+        /// </summary>
+        /// <param name="vertice">Vértice.</param>
+        /// <returns>Lista com vertices adjacentes.</returns>
+        public List<int> VerticesAdjacentes(int vertice)
+        {
+            try
+            {
+                if (vertice < 0 || vertice >= listaAdj.Length)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(vertice), "O vértice está fora dos limites da lista de adjacência.");
+                }
+
+                List<int> adj = new List<int>();
+                listaAdj[vertice].ForEach(a => adj.Add(a.getDestino()));
+                return adj;
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
+                return new List<int>(); // Retorna uma lista vazia para evitar `null`.
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado ao obter vértices adjacentes: {ex.Message}");
+                return new List<int>();
+            }
+        }
+
+        /// <summary>
         /// Pega as arestas incidentes de um vértice v informado pelo usuário.
         /// </summary>
         /// <param name="vertice">Vértice v</param>
@@ -221,22 +251,6 @@ namespace GrafosTrabalho
                 return true;
             }
             return false;
-        }
-
-        /// <summary>
-        /// Imprimir vertices adjacentes
-        /// </summary>
-        /// <param name="vertice">Vértice.</param>
-        /// <returns>Lista com vertices adjacentes.</returns>
-        public List<int> VerticesAdjacentes(int vertice)
-        {
-            if(vertice >= 0 && vertice <= listaAdj.Length)
-            {
-                List<int> adj = new List<int>();
-                listaAdj[vertice].ForEach(a => adj.Add(a.getDestino()));
-                return adj;
-            }
-            return null;
         }
     }
 }
