@@ -359,7 +359,7 @@ namespace GrafosTrabalho
                         fazerBusca(grafo);
                         break;
                     case 12:
-                        //boobs
+                        acharCaminho(grafo); ;
                         break;
                     case 0:
                         Console.Clear();
@@ -828,7 +828,7 @@ namespace GrafosTrabalho
 
         #region Buscas
         /// <summary>
-        /// Menu com as buscar disponíveis
+        /// Menu com as buscas disponíveis
         /// </summary>
         public static void fazerBusca(IGrafo grafo)
         {
@@ -956,5 +956,109 @@ namespace GrafosTrabalho
         }
         #endregion
 
+        #region Metodos de caminho mínimo
+        /// <summary>
+        /// Menu com os caminhos disponíveis
+        /// </summary>
+        public static void acharCaminho(IGrafo grafo)
+        {
+            Console.Clear();
+            Console.WriteLine("Qual tipo de algoritmo deseja usar?");
+            Console.WriteLine("1 - Dijkstra");
+            Console.WriteLine("2 - Floyd Warshall");
+            Console.WriteLine("0 - Sair");
+            int escolha = int.Parse(Console.ReadLine());
+            switch (escolha)
+            {
+
+                case 1:
+                    Console.Clear();
+                    Console.WriteLine("Informe o vértice inicial");
+                    int n1 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Informe o vértice final");
+                    int n2 = int.Parse(Console.ReadLine());
+                    var (distancia, caminho) = Dijkstra(grafo, n1, n2);
+                    if (caminho == null)
+                    {
+                        Console.WriteLine($"Não há caminho entre {n1} e {n2}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"A menor distância entre {n1} e {n2} é = {distancia}");
+                        Console.WriteLine($"Caminho: {string.Join(" -> ", caminho)}");
+                    }
+                    break;
+                case 2:
+                    Console.Clear();
+                    
+                    break;
+                case 0:
+                    Console.Clear();
+                    Console.WriteLine("Saindo...");
+                    return;
+                default:
+                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Dijkstra
+        /// </summary>
+        /// <param name="verticeInicial">Vértice inicial.</param>
+        /// <returns>Faz o caminho mínimo utilizando Dijkstra</returns>
+        public static (int distancia, List<int> caminho) Dijkstra(IGrafo grafo, int origem, int destino)
+        {
+            Dictionary<int, int> distancias = new Dictionary<int, int>();
+            Dictionary<int, int> predecessores = new Dictionary<int, int>();
+            HashSet<int> visitados = new HashSet<int>();
+            SortedSet<(int distancia, int vertice)> fila = new SortedSet<(int distancia, int vertice)>();
+
+            distancias[origem] = 0;
+            fila.Add((0, origem));
+
+            while (fila.Count > 0)
+            {
+                var (distanciaAtual, verticeAtual) = fila.Min;
+                fila.Remove(fila.Min);
+
+                if (visitados.Contains(verticeAtual)) continue;
+                visitados.Add(verticeAtual);
+
+                if (verticeAtual == destino)
+                {
+                    List<int> caminho = new List<int>();
+                    int atual = destino;
+                    while (atual != origem)
+                    {
+                        caminho.Insert(0, atual);
+                        atual = predecessores[atual];
+                    }
+                    caminho.Insert(0, origem);
+                    return (distanciaAtual, caminho);
+                }
+
+                foreach (var vizinho in grafo.VerticesAdjacentes(verticeAtual))
+                {
+                    var aresta = grafo.ArestasIncidentes(verticeAtual).Find(a => a.getDestino() == vizinho);
+
+                    if (aresta == null) continue; 
+
+                    int peso = aresta.getPeso();
+                    int distanciaVizinho = distancias.ContainsKey(vizinho) ? distancias[vizinho] : int.MaxValue;
+
+                    if (distancias[verticeAtual] + peso < distanciaVizinho)
+                    {
+                        distancias[vizinho] = distancias[verticeAtual] + peso;
+                        predecessores[vizinho] = verticeAtual;
+
+                        fila.Add((distancias[vizinho], vizinho));
+                    }
+                }
+            }
+
+            return (int.MaxValue, null);
+        }
+        #endregion
     }
 }
