@@ -622,11 +622,11 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void trocarAdjacencia(IGrafo grafo)
         {
+            //* Errado
+            Console.Clear();
             int vertice1 = informeVertice();
-            Console.Write(" 1");
 
             int vertice2 = informeVertice();
-            Console.Write(" 2");
 
             bool sucesso = grafo.TrocarAdjacencias(vertice1, vertice2);
             Console.Clear();
