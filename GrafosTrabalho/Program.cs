@@ -418,7 +418,7 @@ namespace GrafosTrabalho
         {
             Adjacencia adjacencia = criarAdjacencia();
             List<Adjacencia> lista = grafo.ArestasAdjacentes(adjacencia);
-            foreach Adjacencia aresta in lista{
+            foreach (Adjacencia aresta in lista){
                 aresta.ToString();
             }
             
@@ -440,8 +440,8 @@ namespace GrafosTrabalho
         public static void imprimirArestasIncidentes(IGrafo grafo){
 
             int vertice = informeVertice();
-            List<Adjacencia> lista grafo.ArestasIncidentes(vertice);
-            foreach Adjacencia aresta in lista{
+            List<Adjacencia> lista = grafo.ArestasIncidentes(vertice);
+            foreach(Adjacencia aresta in lista){
                 aresta.ToString();
             }
         }
@@ -459,7 +459,7 @@ namespace GrafosTrabalho
             int destino = int.Parse(Console.ReadLine());
 
            List<int> lista = grafo.VerticesIncidentes(origem, destino);
-           foreach int vertices in lista{
+           foreach(int vertices in lista){
               Console.WriteLine(vertices.ToString());   
            }
         }
@@ -488,8 +488,12 @@ namespace GrafosTrabalho
             Console.Write(" 2");
 
             bool resposta = grafo.VerificarVizinhos(vertice1, vertice2);
-            if (resposta): { Console.WriteLine("Vértices são vizinhos");}
-            else?:{ Console.WriteLine("Vértices não são vizinhos"); }
+            if (resposta){
+                Console.WriteLine("Vértices são vizinhos");
+            }
+            else{
+                Console.WriteLine("Vértices não são vizinhos"); 
+            }
 
         }
 

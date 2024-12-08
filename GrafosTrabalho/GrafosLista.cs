@@ -9,6 +9,7 @@ namespace GrafosTrabalho
     internal class GrafosLista : IGrafo
     {
         private List<Adjacencia>[] listaAdj;
+
         public GrafosLista(int vertices)
         {
             listaAdj = new List<Adjacencia>[vertices];
@@ -31,6 +32,14 @@ namespace GrafosTrabalho
                 AdicionarAresta(lista[0], lista[1], lista[2]);
             }
         }
+
+        /// <summary>
+        /// Adiciona aresta informada pelo user
+        /// </summary>
+        /// <param name="origem">Vértice de origem.</param>
+        /// <param name="destino">Vértice de destino.</param>
+        /// <param name="peso">Peso da aresta.</param>
+        /// <returns>True se a adição a foi realizada com sucesso, False caso contrário.</returns>
         public bool AdicionarAresta(int vertice, int destino, int peso)
         {
             if (vertice <= listaAdj.Length && vertice > 0)
@@ -41,6 +50,11 @@ namespace GrafosTrabalho
             }
             return false;
         }
+
+        /// <summary>
+        /// Método ToString com override
+        /// </summary>
+        /// <returns>Retorna o ToString da classe.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -55,6 +69,12 @@ namespace GrafosTrabalho
             }
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Pega as arestas adjacentes de uma aresta E informada pelo usuário.
+        /// </summary>
+        /// <param name="aresta">Aresta</param>
+        /// <returns>Retorna uma lista de arestas com as arestas adjacentes a aresta E.</returns>
         public List<Adjacencia> ArestasAdjacentes(Adjacencia aresta)
         {
             if (aresta.getDestino() <= listaAdj.Length && aresta.getOrigem() > 0)
@@ -66,6 +86,12 @@ namespace GrafosTrabalho
             }
             return null;
         }
+
+        /// <summary>
+        /// Pega as arestas incidentes de um vértice v informado pelo usuário.
+        /// </summary>
+        /// <param name="vertice">Vértice v</param>
+        /// <returns>Retorna uma lista com as arestas incidentes ao vértice.</returns>
         public List<Adjacencia> ArestasIncidentes(int vertice)
         {
             if (vertice >= 0 && vertice <= listaAdj.Length)
@@ -76,6 +102,13 @@ namespace GrafosTrabalho
             }
             return null;
         }
+
+        /// <summary>
+        /// Pega os vértices incidentes a uma aresta a, informada pelo usuário.
+        /// </summary>
+        /// <param name="origem">Vértice de origem.</param>
+        /// <param name="destino">Vértice de destino.</param>
+        /// <returns>Retorna uma lista com os vertices incidentes.</returns>
         public List<int> VerticesIncidentes(int origem, int destino)
         {
             if (origem <= listaAdj.Length && destino > 0)
@@ -87,6 +120,12 @@ namespace GrafosTrabalho
             }
             return null;
         }
+
+        /// <summary>
+        /// Verifica o grau de determinado vértice.
+        /// </summary>
+        /// <param name="vertice">Vértice que irá ser avaliado.</param>
+        /// <returns>Retorna o grau do vértice.</returns>
         public int GrauVertice(int vertice)
         {
             if (vertice >= 0 && vertice <= listaAdj.Length)
@@ -95,6 +134,13 @@ namespace GrafosTrabalho
             }
             return 0;
         }
+
+        /// <summary>
+        /// Determinar se dois vértices são adjacentes.
+        /// </summary>
+        /// <param name="origeme">Vértice 1.</param>
+        /// <param name="destino">Vértice 2.</param>
+        /// <returns>True se são vizinhos, False caso contrário.</returns>
         public bool VerificarVizinhos(int vertice, int vertice2)
         {
             if ((vertice >= 0 && vertice <= listaAdj.Length) && (vertice >= 0 && vertice <= listaAdj.Length))
@@ -103,6 +149,14 @@ namespace GrafosTrabalho
             }
             return false;
         }
+
+        /// <summary>
+        /// Substitui o peso de uma aresta a, informada pelo usuário.
+        /// </summary>
+        /// <param name="origem">Vértice de origem.</param>
+        /// <param name="destino">Vértice de destino.</param>
+        /// <param name="peso">Peso da aresta.</param>
+        /// <returns>True se a troca foi realizada com sucesso, False caso contrário.</returns>
         public bool TrocarPeso(int origem, int destino, int peso)
         {
             if (destino <= listaAdj.Length && origem >= listaAdj.Length)
@@ -118,6 +172,13 @@ namespace GrafosTrabalho
             }
             return false;
         }
+
+        /// <summary>
+        /// Trocar dois vértices
+        /// </summary>
+        /// <param name="vertice1">Vértice 1.</param>
+        /// <param name="vertice2">Vértice 2.</param>
+        /// <returns>True se a troca foi realizada com sucesso e False caso contrário.</returns>
         public bool TrocarAdjacencias(int vertice, int vertice2)
         {
             if ((vertice >= 0 && vertice <= listaAdj.Length) && (vertice >= 0 && vertice <= listaAdj.Length))
