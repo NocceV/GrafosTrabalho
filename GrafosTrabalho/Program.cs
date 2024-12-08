@@ -707,24 +707,47 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void substituirPesos(IGrafo grafo)
         {
-            Console.Clear();
-            int origem = informeVertice();
-
-            int destino = informeVertice();
-
-            Console.WriteLine("Informe o peso");
-            int peso = int.Parse(Console.ReadLine());
-
-            bool resultado = grafo.TrocarPeso(origem,destino, peso);
-
-            Console.Clear();
-            if (resultado)
+            try
             {
-                Console.WriteLine("Peso substituido com sucesso");
+                Console.Clear();
+                if (grafo == null)
+                {
+                    Console.WriteLine("Erro: O grafo não foi inicializado.");
+                    return;
+                }
+
+                int origem = informeVertice();
+                int destino = informeVertice();
+
+                Console.WriteLine("Informe o peso:");
+                if (!int.TryParse(Console.ReadLine(), out int peso))
+                {
+                    Console.WriteLine("Erro: O peso informado não é válido.");
+                    return;
+                }
+                bool resultado = grafo.TrocarPeso(origem, destino, peso);
+
+                Console.Clear();
+                if (resultado)
+                {
+                    Console.WriteLine("Peso substituído com sucesso.");
+                }
+                else
+                {
+                    Console.WriteLine("Erro ao substituir o peso.");
+                }
             }
-            else
+            catch (ArgumentOutOfRangeException ex)
             {
-                Console.WriteLine("Erro ao substituir peso");
+                Console.WriteLine($"Erro: {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado: {ex.Message}");
             }
         }
 

@@ -238,18 +238,29 @@ namespace GrafosTrabalho
         /// <returns>True se a troca foi realizada com sucesso, False caso contrário.</returns>
         public bool TrocarPeso(int origem, int destino, int peso)
         {
-            if (origem >= 0 && origem < listaAdj.Length && destino >= 0 && destino < listaAdj.Length)
+            if (origem < 0 || origem >= listaAdj.Length)
+                throw new ArgumentOutOfRangeException(nameof(origem), $"O vértice de origem {origem} está fora do intervalo permitido.");
+
+            if (destino < 0 || destino >= listaAdj.Length)
+                throw new ArgumentOutOfRangeException(nameof(destino), $"O vértice de destino {destino} está fora do intervalo permitido.");
+
+            if (listaAdj[origem] == null)
+                throw new InvalidOperationException($"A lista de adjacência para o vértice de origem {origem} está vazia ou não inicializada.");
+
+            bool encontrado = false;
+            listaAdj[origem].ForEach(a =>
             {
-                listaAdj[origem].ForEach(a =>
+                if (a.getDestino() == destino)
                 {
-                    if (a.getDestino() == destino)
-                    {
-                        a.setPeso(peso);
-                    }
-                });
-                return true;
-            }
-            return false;
+                    a.setPeso(peso);
+                    encontrado = true;
+                }
+            });
+
+            if (!encontrado)
+                throw new InvalidOperationException($"A aresta entre {origem} e {destino} não foi encontrada.");
+
+            return true;
         }
         
 
