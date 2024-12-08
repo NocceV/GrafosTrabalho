@@ -159,7 +159,7 @@ namespace GrafosTrabalho
         /// <returns>True se a troca foi realizada com sucesso, False caso contrário.</returns>
         public bool TrocarPeso(int origem, int destino, int peso)
         {
-            if (destino <= listaAdj.Length && origem >= listaAdj.Length)
+            if (origem >= 0 && origem < listaAdj.Length && destino >= 0 && destino < listaAdj.Length)
             {
                 listaAdj[origem].ForEach(a =>
                 {
@@ -182,7 +182,7 @@ namespace GrafosTrabalho
         /// <returns>True se a troca foi realizada com sucesso e False caso contrário.</returns>
         public bool TrocarAdjacencias(int vertice, int vertice2)
         {
-            if ((vertice >= 0 && vertice <= listaAdj.Length) && (vertice >= 0 && vertice <= listaAdj.Length))
+            if ((vertice >= 0 && vertice <= listaAdj.Length) && (vertice2 >= 0 && vertice2 <= listaAdj.Length))
             {
                 List<Adjacencia> aux = new List<Adjacencia>();
                 aux = listaAdj[vertice];
