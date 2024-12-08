@@ -223,29 +223,24 @@ namespace GrafosTrabalho
                 List<List<int>> dimic = new List<List<int>>();
 
                 for (int i = 1; i < linhas.Length; i++)
-                {
-                    // Remove espaços extras e normaliza a linha
+                {                  
                     string linhaAtual = linhas[i].Trim();
-                    Console.WriteLine($"Processando linha {i + 1}: '{linhaAtual}'"); // Depuração
+                    Console.WriteLine($"Processando linha {i + 1}: '{linhaAtual}'"); 
 
-                    // Ignora linhas vazias
                     if (string.IsNullOrWhiteSpace(linhaAtual))
                     {
                         Console.WriteLine($"Linha {i + 1} está vazia ou contém apenas espaços. Ignorando.");
                         continue;
                     }
 
-                    // Divide a linha em partes usando Split
                     string[] dadosAresta = linhaAtual.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    // Verifica se a linha possui exatamente 3 elementos
                     if (dadosAresta.Length != 3)
                     {
                         Console.WriteLine($"Formato inválido na linha {i + 1}: '{linhaAtual}'");
-                        continue; // Ignora a linha, mas prossegue com as demais
+                        continue; 
                     }
 
-                    // Tenta converter os valores para inteiros
                     if (!int.TryParse(dadosAresta[0], out int verticeOrigem) ||
                         !int.TryParse(dadosAresta[1], out int verticeDestino) ||
                         !int.TryParse(dadosAresta[2], out int peso))
@@ -254,7 +249,6 @@ namespace GrafosTrabalho
                         continue;
                     }
 
-                    // Adiciona a aresta ao grafo
                     verticeDestino--;
                     verticeOrigem--;
                     dimic.Add(new List<int> { verticeOrigem, verticeDestino, peso });
