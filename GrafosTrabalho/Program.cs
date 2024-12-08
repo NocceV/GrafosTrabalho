@@ -758,20 +758,39 @@ namespace GrafosTrabalho
         public static void trocarAdjacencia(IGrafo grafo)
         {
             //* Errado
-            Console.Clear();
-            int vertice1 = informeVertice();
-
-            int vertice2 = informeVertice();
-
-            bool sucesso = grafo.TrocarAdjacencias(vertice1, vertice2);
-            Console.Clear();
-            if (sucesso)
+            try
             {
-                Console.WriteLine("Troca feita com sucesso");
+                Console.Clear();
+                if (grafo == null)
+                {
+                    Console.WriteLine("Erro: O grafo não foi inicializado.");
+                    return;
+                }
+                int vertice1 = informeVertice();
+                int vertice2 = informeVertice();
+                bool sucesso = grafo.TrocarAdjacencias(vertice1, vertice2);
+
+                Console.Clear();
+                if (sucesso)
+                {
+                    Console.WriteLine("Troca feita com sucesso.");
+                }
+                else
+                {
+                    Console.WriteLine("Erro ao fazer a troca.");
+                }
             }
-            else
+            catch (ArgumentOutOfRangeException ex)
             {
-                Console.WriteLine("Erro ao fazer troca");
+                Console.WriteLine($"Erro: {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado: {ex.Message}");
             }
         }
 

@@ -272,18 +272,25 @@ namespace GrafosTrabalho
         /// <returns>True se a troca foi realizada com sucesso e False caso contrário.</returns>
         public bool TrocarAdjacencias(int vertice, int vertice2)
         {
-            if ((vertice >= 0 && vertice <= listaAdj.Length) && (vertice2 >= 0 && vertice2 <= listaAdj.Length))
-            {
-                List<Adjacencia> aux = new List<Adjacencia>();
-                aux = listaAdj[vertice];
+            if (vertice < 0 || vertice >= listaAdj.Length)
+                throw new ArgumentOutOfRangeException(nameof(vertice), $"O vértice {vertice} está fora do intervalo permitido.");
 
-                //Troca de posição e ajuste de origem
+            if (vertice2 < 0 || vertice2 >= listaAdj.Length)
+                throw new ArgumentOutOfRangeException(nameof(vertice2), $"O vértice {vertice2} está fora do intervalo permitido.");
+
+            if (listaAdj[vertice] == null)
+                throw new InvalidOperationException($"A lista de adjacência do vértice {vertice} está vazia ou não inicializada.");
+
+            if (listaAdj[vertice2] == null)
+                throw new InvalidOperationException($"A lista de adjacência do vértice {vertice2} está vazia ou não inicializada.");
+            try
+            {
+                List<Adjacencia> aux = listaAdj[vertice];
                 listaAdj[vertice] = listaAdj[vertice2];
                 listaAdj[vertice].ForEach(a => a.setOrigem(vertice));
-                listaAdj[vertice2] = listaAdj[vertice];
+                listaAdj[vertice2] = aux;
                 listaAdj[vertice2].ForEach(a => a.setOrigem(vertice2));
 
-                //Verifica quais vértices são adjacentes antes da troca e altera o destino
                 for (int i = 0; i < listaAdj.Length; i++)
                 {
                     listaAdj[i].Where(x => x.getDestino() == vertice).ToList().ForEach(a => a.setDestino(vertice2));
@@ -291,7 +298,10 @@ namespace GrafosTrabalho
                 }
                 return true;
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Erro ao realizar a troca de adjacências.", ex);
+            }
         }
     }
 }
