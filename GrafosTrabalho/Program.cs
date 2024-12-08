@@ -536,18 +536,20 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirVerticesIncidentes(IGrafo grafo)
         {
-            Console.WriteLine("Informe origem");
+            //*estranho
+            Console.Clear();
+            Console.WriteLine("Informe origem do vértice da aresta");
             int origem = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Informe destino");
+            Console.WriteLine("Informe destino do vértice da aresta");
             int destino = int.Parse(Console.ReadLine());
 
             List<int> lista = grafo.VerticesIncidentes(origem, destino);
 
             Console.Clear();
-            Console.WriteLine("Vértices incidentes: ");
+            Console.WriteLine("Vértices incidentes a aresta: ");
             foreach (int vertices in lista){
-              Console.WriteLine(vertices.ToString());   
+              Console.Write(vertices.ToString()+ " - ");   
             }
         }
 
