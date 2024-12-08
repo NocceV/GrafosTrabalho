@@ -580,19 +580,50 @@ namespace GrafosTrabalho
         public static void imprimirVerticesIncidentes(IGrafo grafo)
         {
             //*estranho
-            Console.Clear();
-            Console.WriteLine("Informe origem do vértice da aresta");
-            int origem = int.Parse(Console.ReadLine());
+            try
+            {
+                if (grafo == null)
+                {
+                    Console.WriteLine("Erro: O grafo fornecido é nulo.");
+                    return;
+                }
 
-            Console.WriteLine("Informe destino do vértice da aresta");
-            int destino = int.Parse(Console.ReadLine());
+                Console.Clear();
 
-            List<int> lista = grafo.VerticesIncidentes(origem, destino);
+                Console.WriteLine("Informe a origem do vértice da aresta:");
+                if (!int.TryParse(Console.ReadLine(), out int origem))
+                {
+                    Console.WriteLine("Erro: A origem informada não é um número válido.");
+                    return;
+                }
 
-            Console.Clear();
-            Console.WriteLine("Vértices incidentes a aresta: ");
-            foreach (int vertices in lista){
-              Console.Write(vertices.ToString()+ " - ");   
+                Console.WriteLine("Informe o destino do vértice da aresta:");
+                if (!int.TryParse(Console.ReadLine(), out int destino))
+                {
+                    Console.WriteLine("Erro: O destino informado não é um número válido.");
+                    return;
+                }
+
+                List<int> lista = grafo.VerticesIncidentes(origem, destino);
+
+                if (lista == null || lista.Count == 0)
+                {
+                    Console.WriteLine("Nenhum vértice incidente encontrado para os valores fornecidos.");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Vértices incidentes à aresta:");
+                    foreach (int vertice in lista)
+                    {
+                        Console.Write($"{vertice} - ");
+                    }
+                    Console.WriteLine(); 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado ao imprimir vértices incidentes: {ex.Message}");
             }
         }
 

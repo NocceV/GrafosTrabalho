@@ -175,14 +175,25 @@ namespace GrafosTrabalho
         /// <returns>Retorna uma lista com os vertices incidentes.</returns>
         public List<int> VerticesIncidentes(int origem, int destino)
         {
-            if (origem <= listaAdj.Length && destino > 0)
+            try
             {
-                List<int> adj = new List<int>();
-                adj.Add(origem);
-                adj.Add(destino);
-                return adj;
+                if (origem < 0 || origem >= listaAdj.Length || destino < 0 || destino >= listaAdj.Length)
+                {
+                    throw new ArgumentOutOfRangeException("Os vértices de origem ou destino estão fora dos limites permitidos.");
+                }
+
+                return new List<int> { origem, destino };
             }
-            return null;
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
+                return new List<int>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro inesperado ao buscar vértices incidentes: {ex.Message}");
+                return new List<int>();
+            }
         }
 
         /// <summary>
