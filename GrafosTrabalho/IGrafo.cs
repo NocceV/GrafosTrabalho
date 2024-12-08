@@ -31,5 +31,6 @@ namespace GrafosTrabalho
         bool VerificarVizinhos(int vertice, int vertice2);
         bool TrocarPeso(int origem, int destino, int peso);
         bool TrocarAdjacencias(int vertice, int vertice2);
+        List<int> VerticesAdjacentes(int vertice);
     }
 }

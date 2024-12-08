@@ -172,6 +172,7 @@ namespace GrafosTrabalho
             }
             return false;
         }
+        
 
         /// <summary>
         /// Trocar dois vértices
@@ -201,6 +202,17 @@ namespace GrafosTrabalho
                 return true;
             }
             return false;
+        }
+
+        public List<int> VerticesAdjacentes(int vertice)
+        {
+            if(vertice >= 0 && vertice <= listaAdj.Length)
+            {
+                List<int> adj = new List<int>();
+                listaAdj[vertice].ForEach(a => adj.Add(a.getDestino()));
+                return adj;
+            }
+            return null;
         }
     }
 }
