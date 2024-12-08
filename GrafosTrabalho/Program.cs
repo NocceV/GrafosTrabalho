@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using System.Media;
 
 namespace GrafosTrabalho
 {
@@ -18,8 +17,6 @@ namespace GrafosTrabalho
         {
             try
             {
-                //SoundPlayer player = new SoundPlayer("./femur-pipe-falling-the-absurd.mp3");
-                //player.Play();
                 Console.Clear();
                 start();
             }
@@ -96,6 +93,7 @@ namespace GrafosTrabalho
         {
             try
             {
+                Console.Clear();
                 Console.WriteLine("Informe a quantidade de vértices:");
                 if (!int.TryParse(Console.ReadLine(), out int numVertices) || numVertices <= 0)
                 {
@@ -110,6 +108,7 @@ namespace GrafosTrabalho
                     return;
                 }
 
+                Console.Clear();
                 List<List<int>> dimic = criarDimac(numVertices, numArestas);
 
                 IGrafo grafo;
@@ -125,6 +124,9 @@ namespace GrafosTrabalho
 
                 Console.Clear();
                 Console.WriteLine("Grafo criado :D");
+                Console.WriteLine("Presione Enter...");
+                Console.ReadLine();
+                Console.Clear();
                 menuGrafo(grafo);
             }
             catch (Exception ex)
@@ -195,7 +197,10 @@ namespace GrafosTrabalho
                 }
 
                 Console.Clear();
-                Console.WriteLine("Grafo carregado com sucesso:");
+                Console.WriteLine("Grafo criado :D");
+                Console.WriteLine("Presione Enter...");
+                Console.ReadLine();
+                Console.Clear();
                 menuGrafo(grafo);
             }
             catch (Exception ex)
@@ -276,6 +281,7 @@ namespace GrafosTrabalho
             bool repetidor = true;
             while (repetidor)
             {
+                Console.Clear();
                 Console.WriteLine("\nMenu:");
                 Console.WriteLine("1. Adicionar aresta");
                 Console.WriteLine("2. Listar grafo");
@@ -339,7 +345,11 @@ namespace GrafosTrabalho
                     default:
                         Console.WriteLine("Opção inválida. Tente novamente.");
                         break;
+
                 }
+                Console.WriteLine("Presione Enter");
+                Console.ReadLine();
+                Console.Clear();
             }
         }
 
@@ -402,6 +412,8 @@ namespace GrafosTrabalho
         {
             try
             {
+                Console.Clear();
+                Console.WriteLine("Grafo: ");
                 Console.WriteLine(grafo.ToString());
             }
             catch (Exception ex)
@@ -418,6 +430,9 @@ namespace GrafosTrabalho
         {
             Adjacencia adjacencia = criarAdjacencia();
             List<Adjacencia> lista = grafo.ArestasAdjacentes(adjacencia);
+
+            Console.Clear();
+            Console.WriteLine("Arestas adjacentes: ");
             foreach (Adjacencia aresta in lista){
                 aresta.ToString();
             }
@@ -441,7 +456,10 @@ namespace GrafosTrabalho
 
             int vertice = informeVertice();
             List<Adjacencia> lista = grafo.ArestasIncidentes(vertice);
-            foreach(Adjacencia aresta in lista){
+
+            Console.Clear();
+            Console.WriteLine($"Arestas incidentes ao vértice: {vertice} ");
+            foreach (Adjacencia aresta in lista){
                 aresta.ToString();
             }
         }
@@ -458,10 +476,13 @@ namespace GrafosTrabalho
             Console.WriteLine("Informe destino");
             int destino = int.Parse(Console.ReadLine());
 
-           List<int> lista = grafo.VerticesIncidentes(origem, destino);
-           foreach(int vertices in lista){
+            List<int> lista = grafo.VerticesIncidentes(origem, destino);
+
+            Console.Clear();
+            Console.WriteLine("Vértices incidentes: ");
+            foreach (int vertices in lista){
               Console.WriteLine(vertices.ToString());   
-           }
+            }
         }
 
         /// <summary>
@@ -469,8 +490,11 @@ namespace GrafosTrabalho
         /// </summary>
         /// <param name="grafo">Interface Grafo.</param>
         public static void imprimirGrauVertice(IGrafo grafo)
-        {
+        {        
             int vertice = informeVertice();
+
+            Console.Clear();
+            Console.WriteLine("Grau do vértice: ");
             Console.WriteLine(grafo.GrauVertice(vertice));
         }
 
@@ -487,6 +511,7 @@ namespace GrafosTrabalho
             int vertice2 = informeVertice();
             Console.Write(" 2");
 
+            Console.Clear();
             bool resposta = grafo.VerificarVizinhos(vertice1, vertice2);
             if (resposta){
                 Console.WriteLine("Vértices são vizinhos");
@@ -503,8 +528,26 @@ namespace GrafosTrabalho
         /// <param name="grafo">Interface Grafo.</param>
         public static void substituirPesos(IGrafo grafo)
         {
-            Adjacencia adj = criarAdjacencia();
-            bool sucesso = grafo.TrocarPeso(adj);
+            int origem = informeVertice();
+            Console.Write(" de origem");
+
+            int destino = informeVertice();
+            Console.Write(" de destino");
+
+            Console.WriteLine("Informe o peso");
+            int peso = int.Parse(Console.ReadLine());
+
+            bool resultado = grafo.TrocarPeso(origem,destino, peso);
+
+            Console.Clear();
+            if (resultado)
+            {
+                Console.WriteLine("Peso substituido com sucesso");
+            }
+            else
+            {
+                Console.WriteLine("Erro ao substituir peso");
+            }
         }
 
         /// <summary>
@@ -520,6 +563,15 @@ namespace GrafosTrabalho
             Console.Write(" 2");
 
             bool sucesso = grafo.TrocarAdjacencias(vertice1, vertice2);
+            Console.Clear();
+            if (sucesso)
+            {
+                Console.WriteLine("Troca feita com sucesso");
+            }
+            else
+            {
+                Console.WriteLine("Erro ao fazer troca");
+            }
         }
 
         /// <summary>
