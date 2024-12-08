@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GrafosTrabalho
 {
-    internal class GrafosMatriz
+    internal class GrafosMatriz : IGrafo
     {
         private int[,] _matrizGrafo;
 
@@ -21,11 +21,6 @@ namespace GrafosTrabalho
                 matrizAdjacencia[aresta[0] - 1, aresta[1] - 1] = aresta[2];
             }
             _matrizGrafo = matrizAdjacencia;
-        }
-
-        public bool AdicionarAresta(int vertice, int destino, int peso)
-        {
-            return true;
         }
 
         public override string ToString()
@@ -44,6 +39,48 @@ namespace GrafosTrabalho
                 sb.Append("]\n");
             }
             return sb.ToString();
+        }
+
+        //--------------------------Falta implementar---------------------
+
+        public bool AdicionarAresta(int vertice, int destino, int peso)
+        {
+            return true;
+        }
+
+        public List<Adjacencia> ArestasAdjacentes(Adjacencia aresta)
+        {
+            return null;
+        }
+
+        public List<Adjacencia> ArestasIncidentes(int vertice)
+        {
+            return null; 
+        }
+
+        public List<int> VerticesIncidentes(int origem, int destino)
+        {
+            return null; 
+        }
+
+        public int GrauVertice(int vertice)
+        {
+            return 0;
+        }
+
+        public bool VerificarVizinhos(int vertice, int vertice2)
+        {
+            return false;
+        }
+
+        public bool TrocarPeso(int origem, int destino, int peso)
+        {
+            return false;
+        }
+
+        public bool TrocarAdjacencias(int vertice, int vertice2)
+        {
+            return false;
         }
     }
 }

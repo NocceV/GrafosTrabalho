@@ -8,7 +8,6 @@ namespace GrafosTrabalho
 {
     internal interface IGrafo
     {
-        //bool AdicionarVertice();
 
         /// <summary>
         /// Adiciona uma aresta ao grafo.

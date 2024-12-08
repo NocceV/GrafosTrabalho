@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Media;
+//using System.Media;
 
 namespace GrafosTrabalho
 {
@@ -17,8 +18,8 @@ namespace GrafosTrabalho
         {
             try
             {
-                SoundPlayer player = new SoundPlayer("./femur-pipe-falling-the-absurd.mp3");
-                player.Play();
+                //SoundPlayer player = new SoundPlayer("./femur-pipe-falling-the-absurd.mp3");
+                //player.Play();
                 Console.Clear();
                 start();
             }
@@ -51,7 +52,10 @@ namespace GrafosTrabalho
                     switch (codigoEscolha)
                     {
                         case 1:
-                            criarGrafo();
+                            criarGrafoDigitando();
+                            break;
+                        case 2:
+                            criarGrafoDimac();
                             break;
                         case 0:
                             Console.WriteLine("Adeus!");
@@ -78,7 +82,8 @@ namespace GrafosTrabalho
         {
             StringBuilder construtorMenu = new StringBuilder();
             construtorMenu.AppendLine("Bem vindo ao sistema de Grafos!");
-            construtorMenu.AppendLine("1) Criar grafo");
+            construtorMenu.AppendLine("1) Criar grafo digitando");
+            construtorMenu.AppendLine("2) Criar grafo com arquivo DIMAC");
             construtorMenu.AppendLine("0) Sair");
             return construtorMenu.ToString();
         }
@@ -87,7 +92,7 @@ namespace GrafosTrabalho
         /// Após escolher criar o grafo, o usuário informa os detalhes para criar o grafo
         /// (numero de vertices, numero de arestas,peso das arestas)
         /// </summary>
-        public static void criarGrafo()
+        public static void criarGrafoDigitando()
         {
             try
             {
@@ -105,13 +110,13 @@ namespace GrafosTrabalho
                     return;
                 }
 
-                List<List<int>> dimic = criarDimic(numVertices, numArestas);
+                List<List<int>> dimic = criarDimac(numVertices, numArestas);
 
                 IGrafo grafo;
 
                 if (calcularDensidade(numVertices, numArestas) >= 0.5)
                 {
-                   // grafo = new GrafosMatriz(numVertices, dimic);
+                    grafo = new GrafosMatriz(numVertices, dimic);
                 }
                 else
                 {
@@ -120,7 +125,76 @@ namespace GrafosTrabalho
 
                 Console.Clear();
                 Console.WriteLine("Grafo criado :D");
-                //menuGrafo(grafo);
+                menuGrafo(grafo);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Erro ao criar grafo: {ex.Message}");
+            }
+        }
+
+        
+        public static void criarGrafoDimac()
+        {
+            try
+            {
+                Console.WriteLine("Insira o caminho do arquivo DIMACS:");
+                string caminhoArquivo = Console.ReadLine();
+                if (!File.Exists(caminhoArquivo))
+                {
+                    Console.WriteLine("Arquivo não encontrado.");
+                    return;
+                }
+
+                string[] linhas = File.ReadAllLines(caminhoArquivo);
+
+                if (linhas.Length < 1)
+                {
+                    Console.WriteLine("Arquivo DIMACS inválido.");
+                    return;
+                }
+
+               
+                string[] primeiraLinha = linhas[0].Split(' ');
+                if (primeiraLinha.Length < 2 ||
+                    !int.TryParse(primeiraLinha[0], out int numVertices) ||
+                    !int.TryParse(primeiraLinha[1], out int numArestas))
+                {
+                    Console.WriteLine("Formato inválido na primeira linha.");
+                    return;
+                }
+
+                List<List<int>> dimic = new List<List<int>>();
+
+                for (int i = 1; i < linhas.Length; i++)
+                {
+                    string[] dadosAresta = linhas[i].Split(' ');
+                    if (dadosAresta.Length < 3 ||
+                        !int.TryParse(dadosAresta[0], out int verticeOrigem) ||
+                        !int.TryParse(dadosAresta[1], out int verticeDestino) ||
+                        !int.TryParse(dadosAresta[2], out int peso))
+                    {
+                        Console.WriteLine($"Formato inválido na linha {i + 1}.");
+                        return;
+                    }
+
+                    dimic.Add(new List<int> { verticeOrigem, verticeDestino, peso });
+                }
+
+                IGrafo grafo;
+                if (calcularDensidade(numVertices, numArestas) >= 0.5)
+                {
+                    grafo = new GrafosMatriz(numVertices, dimic);
+                }
+                else
+                {
+                    grafo = new GrafosLista(numVertices, dimic);
+                }
+
+                Console.Clear();
+                Console.WriteLine("Grafo carregado com sucesso:");
+                menuGrafo(grafo);
             }
             catch (Exception ex)
             {
@@ -147,7 +221,7 @@ namespace GrafosTrabalho
         /// <param name="numVertices">Número de vértices</param>
         /// <param name="numArestas">Número de arestas</param>
         /// <returns>Retorna lista com base no modelo dimic</returns>
-        public static List<List<int>> criarDimic(int numVertices, int numArestas)
+        public static List<List<int>> criarDimac(int numVertices, int numArestas)
         {
             List<List<int>> dimic = new List<List<int>>();
 
@@ -201,9 +275,18 @@ namespace GrafosTrabalho
             while (repetidor)
             {
                 Console.WriteLine("\nMenu:");
-                Console.WriteLine("1. Adicionar vértice");
-                Console.WriteLine("2. Adicionar aresta");
-                Console.WriteLine("3. Listar grafo");
+                Console.WriteLine("1. Adicionar aresta");
+                Console.WriteLine("2. Listar grafo");
+                Console.WriteLine("3. Imprimir arestas adjacentes");
+                Console.WriteLine("4. Imprimir vertices adjacentes");
+                Console.WriteLine("5. Imprimir arestas incidentes");
+                Console.WriteLine("6. Imprimir vertices incidentes");
+                Console.WriteLine("7. Imprimir grau do vértice");
+                Console.WriteLine("8. Determinar adjacencia de vértices");
+                Console.WriteLine("9. Substituir peso de aresta");
+                Console.WriteLine("10. Trocar dois vértices.");
+                Console.WriteLine("11. Fazer busca.");
+                Console.WriteLine("12. Determinar caminho mínimo.");
                 Console.WriteLine("0. Sair");
                 Console.Write("Escolha uma opção: ");
                 int escolha = int.Parse(Console.ReadLine());
@@ -211,14 +294,13 @@ namespace GrafosTrabalho
                 switch (escolha)
                 {
                     case 1:
-                        //addVertice(grafo);
-                        Console.WriteLine("Estamos trabalhando nesta implementação");
-                        break;
-                    case 2:
                         addAresta(grafo);
                         break;
-                    case 3:
+                    case 2:
                         listarGrafo(grafo);
+                        break;
+                    case 3:
+                        
                         break;
                     case 0:
                         Console.Clear();
