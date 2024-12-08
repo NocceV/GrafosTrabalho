@@ -109,17 +109,17 @@ namespace GrafosTrabalho
                 }
 
                 Console.Clear();
-                List<List<int>> dimic = criarDimac(numVertices, numArestas);
+                List<List<int>> dimac = criarDimac(numVertices, numArestas);
 
                 IGrafo grafo;
 
                 if (calcularDensidade(numVertices, numArestas) >= 0.5)
                 {
-                    grafo = new GrafosMatriz(numVertices, dimic);
+                    grafo = new GrafosMatriz(numVertices, dimac);
                 }
                 else
                 {
-                    grafo = new GrafosLista(numVertices, dimic);
+                    grafo = new GrafosLista(numVertices, dimac);
                 }
 
                 Console.Clear();
@@ -150,7 +150,7 @@ namespace GrafosTrabalho
             {
                 try
                 {
-                    Console.WriteLine($"Informe o vértice de origem da aresta {i}:");
+                    Console.WriteLine($"Informe o vértice de origem da aresta {i} (0 a {numVertices - 1}):");
                     if (!int.TryParse(Console.ReadLine(), out int verticeOrigem) || verticeOrigem < 0 || verticeOrigem >= numVertices)
                     {
                         Console.WriteLine("Vértice de origem inválido.");
@@ -158,7 +158,7 @@ namespace GrafosTrabalho
                         continue;
                     }
 
-                    Console.WriteLine($"Informe o vértice de destino da aresta {i}:");
+                    Console.WriteLine($"Informe o vértice de destino da aresta {i} (0 a {numVertices - 1}):");
                     if (!int.TryParse(Console.ReadLine(), out int verticeDestino) || verticeDestino < 0 || verticeDestino >= numVertices)
                     {
                         Console.WriteLine("Vértice de destino inválido.");
@@ -174,8 +174,8 @@ namespace GrafosTrabalho
                         continue;
                     }
 
-                    verticeDestino--;
-                    verticeOrigem--;
+                    //verticeDestino--;
+                    //verticeOrigem--;
                     dimic.Add(new List<int> { verticeOrigem, verticeDestino, peso });
                 }
                 catch (Exception ex)

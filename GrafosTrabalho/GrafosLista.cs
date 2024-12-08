@@ -42,7 +42,7 @@ namespace GrafosTrabalho
         /// <returns>True se a adição a foi realizada com sucesso, False caso contrário.</returns>
         public bool AdicionarAresta(int vertice, int destino, int peso)
         {
-            if (vertice < listaAdj.Length && vertice >= 0)
+            if (vertice >= 0 && vertice < listaAdj.Length && destino >= 0 && destino < listaAdj.Length)
             {
                 Adjacencia aresta = new Adjacencia(vertice, destino, peso);
                 listaAdj[vertice].Add(aresta);
