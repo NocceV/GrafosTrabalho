@@ -104,8 +104,9 @@ namespace GrafosTrabalho
                 {
                     foreach(Adjacencia a in listaAdj[i])
                     {
-                        if (VerificarPorAdjacencia(a, aresta))
+                        if (VerificarPorVertice(a, aresta.getDestino()) || VerificarPorVertice(a, aresta.getOrigem()))
                         {
+                            Console.WriteLine("Verificando" + a.getDestino() + "/" + aresta.getOrigem() + ":::::" + aresta.getDestino() + " /" + aresta.getOrigem());
                             adj.Add(a);
                         }
                     }
@@ -120,10 +121,7 @@ namespace GrafosTrabalho
         }
         public bool VerificarPorAdjacencia(Adjacencia vertice, Adjacencia vertice2)
         {
-            if (vertice.getDestino() == vertice2.getDestino() || 
-                vertice.getDestino() == vertice2.getOrigem() || 
-                vertice.getOrigem() == vertice2.getDestino() || 
-                vertice.getOrigem() == vertice2.getOrigem())
+            if (vertice.getDestino() == vertice2.getOrigem() || vertice.getDestino() == vertice2.getDestino() || vertice.getOrigem() == vertice2.getDestino() || vertice.getOrigem() == vertice2.getOrigem())
             {
                 return true;
             }

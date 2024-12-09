@@ -34,7 +34,7 @@ namespace GrafosTrabalho
         }
         public int getOrigem()
         {
-            return peso;
+            return origem;
         }
         public void setOrigem(int origem)
         {
