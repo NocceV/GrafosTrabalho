@@ -49,6 +49,9 @@ namespace GrafosTrabalho
                 if (peso <= 0)
                     throw new ArgumentException("O peso deve ser maior que zero.", nameof(peso));
 
+                if (_matrizGrafo[vertice, destino] > 0)
+                    throw new ArgumentOutOfRangeException(nameof(destino), "A aresta informada já existe");
+
                 _matrizGrafo[vertice, destino] = peso;
                 return true;
             }
@@ -79,6 +82,9 @@ namespace GrafosTrabalho
 
                 if (destino < 0 || destino >= _matrizGrafo.GetLength(0))
                     throw new ArgumentOutOfRangeException(nameof(destino), "O vértice de destino da aresta está fora dos limites permitidos.");
+
+                if (_matrizGrafo[aresta.getOrigem(),aresta.getDestino()] == 0)
+                    throw new ArgumentOutOfRangeException(nameof(destino), "A aresta informada não existe");
 
                 for (int i = 0; i < _matrizGrafo.GetLength(0); i++)
                 {
@@ -149,6 +155,9 @@ namespace GrafosTrabalho
                 if (destino < 0 || destino >= _matrizGrafo.GetLength(0))
                     throw new ArgumentOutOfRangeException(nameof(destino), "O vértice de destino está fora dos limites permitidos.");
 
+                if (_matrizGrafo[origem, destino] == 0)
+                    throw new ArgumentOutOfRangeException(nameof(destino), "A aresta informada não existe");
+
                 return new List<int> { origem, destino };
             }
             catch (ArgumentOutOfRangeException ex)
@@ -217,6 +226,9 @@ namespace GrafosTrabalho
 
             if (destino < 0 || destino >= _matrizGrafo.GetLength(0))
                 throw new ArgumentOutOfRangeException(nameof(destino), $"O vértice de destino {destino} está fora do intervalo permitido.");
+
+            if (_matrizGrafo[origem, destino] == 0)
+                throw new ArgumentOutOfRangeException(nameof(destino), "A aresta informada não existe");
 
             if (_matrizGrafo[origem, destino] > 0)
                 _matrizGrafo[origem, destino] = peso; encontrado = true;
