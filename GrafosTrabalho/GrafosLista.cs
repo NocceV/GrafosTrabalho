@@ -153,6 +153,17 @@ namespace GrafosTrabalho
                 }
 
                 List<int> adj = new List<int>();
+                
+                for(int i = 0; i < listaAdj.Length; i++)
+                {
+                    foreach(Adjacencia a in listaAdj[i])
+                    {
+                        if(a.getDestino() == vertice)
+                        {
+                            adj.Add(a.getOrigem());
+                        }
+                    }
+                }
                 foreach(Adjacencia a in listaAdj[vertice])
                 {
                     adj.Add(a.getDestino());
