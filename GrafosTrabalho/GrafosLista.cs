@@ -103,7 +103,7 @@ namespace GrafosTrabalho
                 {
                     foreach(Adjacencia a in listaAdj[i])
                     {
-                        if (Verificar(a, aresta))
+                        if (VerificarPorAdjacencia(a, aresta))
                         {
                             adj.Add(a);
                         }
@@ -117,12 +117,21 @@ namespace GrafosTrabalho
                 return null;
             }
         }
-        public bool Verificar(Adjacencia vertice, Adjacencia vertice2)
+        public bool VerificarPorAdjacencia(Adjacencia vertice, Adjacencia vertice2)
         {
             if (vertice.getDestino() == vertice2.getDestino() || 
                 vertice.getDestino() == vertice2.getOrigem() || 
                 vertice.getOrigem() == vertice2.getDestino() || 
                 vertice.getOrigem() == vertice2.getOrigem())
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool VerificarPorVertice(Adjacencia vertice, int vertice2)
+        {
+            if (vertice.getDestino() == vertice2 ||
+                vertice.getOrigem() == vertice2)
             {
                 return true;
             }
@@ -143,7 +152,7 @@ namespace GrafosTrabalho
                 }
 
                 List<int> adj = new List<int>();
-                listaAdj[vertice].ForEach(a => adj.Add(a.getDestino()));
+                listaAdj[vertice].Where(a => VerificarPorVertice(a,vertice));
                 return adj;
             }
             catch (ArgumentOutOfRangeException ex)
