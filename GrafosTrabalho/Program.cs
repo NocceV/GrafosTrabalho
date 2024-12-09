@@ -42,8 +42,8 @@ namespace GrafosTrabalho
                     Console.WriteLine(menuInicial());
                     if (!int.TryParse(Console.ReadLine(), out codigoEscolha))
                     {
-                        Console.Clear();
-                        Console.WriteLine("Por favor, insira um número válido.");
+                        Console.Clear();    
+                        Console.WriteLine("Por Favor, Insira uma das Opções Acima...");
                         continue;
                     }
                     Console.Clear();
@@ -56,10 +56,10 @@ namespace GrafosTrabalho
                             criarGrafoDimac();
                             break;
                         case 0:
-                            Console.WriteLine("Adeus!");
+                            Console.WriteLine("Encerrando Aplicação...");
                             break;
                         default:
-                            Console.WriteLine("Opção inválida!");
+                            Console.WriteLine("Digite uma Opção Válida...");
                             break;
                     }
                 }
@@ -79,10 +79,13 @@ namespace GrafosTrabalho
         public static string menuInicial()
         {
             StringBuilder construtorMenu = new StringBuilder();
-            construtorMenu.AppendLine("Bem vindo ao sistema de Grafos!");
+            construtorMenu.AppendLine("========================================");
+            construtorMenu.AppendLine("    Bem vindo ao sistema de Grafos!");
+            construtorMenu.AppendLine("========================================");
             construtorMenu.AppendLine("1) Criar grafo digitando");
             construtorMenu.AppendLine("2) Criar grafo com arquivo DIMAC");
-            construtorMenu.AppendLine("0) Sair");
+            construtorMenu.AppendLine("========================================");
+            construtorMenu.AppendLine("Pressione 0 para sair...");
             return construtorMenu.ToString();
         }
         #endregion
@@ -306,20 +309,23 @@ namespace GrafosTrabalho
             while (repetidor)
             {
                 Console.Clear();
-                Console.WriteLine("\nMenu:");
-                Console.WriteLine("1. Adicionar aresta");
-                Console.WriteLine("2. Listar grafo");
-                Console.WriteLine("3. Imprimir arestas adjacentes");
-                Console.WriteLine("4. Imprimir vertices adjacentes");
-                Console.WriteLine("5. Imprimir arestas incidentes");
-                Console.WriteLine("6. Imprimir vertices incidentes");
-                Console.WriteLine("7. Imprimir grau do vértice");
-                Console.WriteLine("8. Determinar adjacencia de vértices");
-                Console.WriteLine("9. Substituir peso de aresta");
+                Console.WriteLine("=========================================");
+                Console.WriteLine("             MENU PRINCIPAL:");
+                Console.WriteLine("=========================================");
+                Console.WriteLine("1.  Adicionar aresta");
+                Console.WriteLine("2.  Listar grafo");
+                Console.WriteLine("3.  Imprimir arestas adjacentes");
+                Console.WriteLine("4.  Imprimir vertices adjacentes");
+                Console.WriteLine("5.  Imprimir arestas incidentes");
+                Console.WriteLine("6.  Imprimir vertices incidentes");
+                Console.WriteLine("7.  Imprimir grau do vértice");
+                Console.WriteLine("8.  Determinar adjacencia de vértices");
+                Console.WriteLine("9.  Substituir peso de aresta");
                 Console.WriteLine("10. Trocar dois vértices.");
                 Console.WriteLine("11. Fazer busca.");
                 Console.WriteLine("12. Determinar caminho mínimo.");
-                Console.WriteLine("0. Sair");
+                Console.WriteLine("=========================================");
+                Console.WriteLine("Pressione 0 para sair...");
                 Console.Write("Escolha uma opção: ");
                 int escolha = int.Parse(Console.ReadLine());
 
