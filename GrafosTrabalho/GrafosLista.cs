@@ -102,10 +102,7 @@ namespace GrafosTrabalho
                 List<Adjacencia> adj = new List<Adjacencia>();
                 for(int i = 0; i < listaAdj.Length; i++)
                 {
-                    if (i == aresta.getOrigem() || i == aresta.getDestino())
-                    {
-                        listaAdj[i].ForEach(a => adj.Add(a));
-                    }
+                    adj.AddRange(listaAdj[i].Where(a => a.getDestino() == aresta.getDestino() || a.getOrigem() == aresta.getOrigem()));
                 }
                 return adj;
             }
