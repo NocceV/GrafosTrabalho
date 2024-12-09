@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -251,8 +252,19 @@ namespace GrafosTrabalho
             {
                 throw new ArgumentOutOfRangeException(nameof(vertice), "O vértice está fora do intervalo válido.");
             }
-
-            return listaAdj[vertice]?.Count() ?? 0;
+            int count = 0;
+            for(int i = 0; i < listaAdj.Length; i++)
+            {
+                foreach(Adjacencia a in listaAdj[i])
+                {
+                    if (a.getDestino() == vertice)
+                    {
+                        count++;
+                    }
+                }
+            }
+            count += listaAdj[vertice].Count;
+            return count;
         }
 
         /// <summary>
