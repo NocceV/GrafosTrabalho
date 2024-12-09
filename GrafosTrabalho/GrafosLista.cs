@@ -152,7 +152,10 @@ namespace GrafosTrabalho
                 }
 
                 List<int> adj = new List<int>();
-                listaAdj[vertice].Where(a => VerificarPorVertice(a,vertice));
+                foreach(Adjacencia a in listaAdj[vertice])
+                {
+                    adj.Add(a.getDestino());
+                }
                 return adj;
             }
             catch (ArgumentOutOfRangeException ex)
