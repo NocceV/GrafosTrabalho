@@ -68,7 +68,11 @@ namespace GrafosTrabalho
                 sb.Append((i +1) + " -> ");
                 foreach (Adjacencia aresta in listaAdj[i])
                 {
+<<<<<<< HEAD
                     sb.Append((aresta.getDestino()) + " Peso: " + (aresta.getPeso()) + " | ");
+=======
+                    sb.Append((aresta.getDestino()+1) + " Peso: " + aresta.getPeso() + " | ");
+>>>>>>> refs/remotes/origin/master
                 }
                 sb.AppendLine();
             }
@@ -98,11 +102,16 @@ namespace GrafosTrabalho
                 {
                     throw new ArgumentOutOfRangeException(nameof(aresta), "A origem da aresta está fora dos limites da lista de adjacência.");
                 }
-
                 List<Adjacencia> adj = new List<Adjacencia>();
                 for(int i = 0; i < listaAdj.Length; i++)
                 {
-                    adj.AddRange(listaAdj[i].Where(a => a.getDestino() == aresta.getDestino() || a.getOrigem() == aresta.getOrigem()));
+                    foreach(Adjacencia a in listaAdj[i])
+                    {
+                        if (a.getDestino() == aresta.getDestino() || a.getOrigem() == aresta.getOrigem())
+                        {
+                            adj.Add(a);
+                        }
+                    }
                 }
                 return adj;
             }
