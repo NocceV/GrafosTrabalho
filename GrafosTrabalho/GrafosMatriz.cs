@@ -83,19 +83,25 @@ namespace GrafosTrabalho
                 if (destino < 0 || destino >= _matrizGrafo.GetLength(0))
                     throw new ArgumentOutOfRangeException(nameof(destino), "O vértice de destino da aresta está fora dos limites permitidos.");
 
-                if (_matrizGrafo[aresta.getOrigem(),aresta.getDestino()] == 0)
+                if (_matrizGrafo[aresta.getOrigem(), aresta.getDestino()] == 0)
                     throw new ArgumentOutOfRangeException(nameof(destino), "A aresta informada não existe");
 
                 for (int i = 0; i < _matrizGrafo.GetLength(0); i++)
                 {
                     if (_matrizGrafo[destino, i] > 0)
                         resultado.Add(new Adjacencia(destino, i, _matrizGrafo[destino, i]));
+
+                    if (destino != i && _matrizGrafo[i, destino] > 0)
+                        resultado.Add(new Adjacencia(i, destino, _matrizGrafo[i, destino]));
                 }
 
-                for (int i = 0; i < _matrizGrafo.GetLength(0); i++)
+                for (int i = 0; i < _matrizGrafo.GetLength(1); i++)
                 {
-                    if (_matrizGrafo[origem, i] > 0)
+                    if (_matrizGrafo[origem, i] > 0 && i != destino)
                         resultado.Add(new Adjacencia(origem, i, _matrizGrafo[origem, i]));
+
+                    if (_matrizGrafo[i, origem] > 0 && i != destino && origem != i)
+                        resultado.Add(new Adjacencia(i, origem, _matrizGrafo[i, origem]));
                 }
 
                 return resultado;
@@ -124,6 +130,8 @@ namespace GrafosTrabalho
                 {
                     if (_matrizGrafo[vertice, i] > 0)
                         resultado.Add(new Adjacencia(vertice, i, _matrizGrafo[vertice, i]));
+                    if (_matrizGrafo[i, vertice] > 0)
+                        resultado.Add(new Adjacencia(i, vertice, _matrizGrafo[i, vertice]));
                 }
 
                 return resultado;
@@ -288,7 +296,10 @@ namespace GrafosTrabalho
 
 
                 for (int i = 0; i < _matrizGrafo.GetLength(0); i++)
-                    if (_matrizGrafo[vertice, i] > 0) { adj.Add(i); }
+                {
+                    if (_matrizGrafo[i, vertice] > 0) adj.Add(i);
+                    if (_matrizGrafo[vertice, i] > 0) adj.Add(i);
+                }
 
                 return adj;
             }
