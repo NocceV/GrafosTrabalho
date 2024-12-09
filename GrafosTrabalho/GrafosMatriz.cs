@@ -170,11 +170,18 @@ namespace GrafosTrabalho
         /// <returns>Retorna o grau do vértice.</returns>
         public int GrauVertice(int vertice)
         {
+            int grau = 0;
+
             if (vertice < 0 || vertice >= _matrizGrafo.GetLength(0))
                 throw new ArgumentOutOfRangeException(nameof(vertice), "O vértice está fora do intervalo válido.");
 
-            return Enumerable.Range(0, _matrizGrafo.GetLength(1))
-                             .Count(i => _matrizGrafo[vertice, i] > 0);
+            for (int i = 0; i < _matrizGrafo.GetLength(1); i++)
+                if (_matrizGrafo[vertice, i] > 0) grau++;
+
+            for (int i = 0; i < _matrizGrafo.GetLength(0); i++)
+                if (_matrizGrafo[i, vertice] > 0) grau++;
+
+            return grau;
         }
 
 
