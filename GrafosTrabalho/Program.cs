@@ -801,7 +801,6 @@ namespace GrafosTrabalho
         {
             Console.WriteLine("Informe o vértice");
             int vertice = int.Parse(Console.ReadLine());
-            vertice--;
             return vertice;
         }
 
@@ -814,11 +813,9 @@ namespace GrafosTrabalho
             Console.Clear();
             Console.WriteLine("Informe o vértice de origem da aresta");
             int origem = int.Parse(Console.ReadLine());
-            origem--;
 
             Console.WriteLine("Informe o vértice de destino da aresta");
             int destino = int.Parse(Console.ReadLine());
-            destino--;
 
             Console.WriteLine("Informe o peso da aresta");
             int peso = int.Parse(Console.ReadLine());
