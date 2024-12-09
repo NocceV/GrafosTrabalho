@@ -65,7 +65,7 @@ namespace GrafosTrabalho
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < listaAdj.Length; i++)
             {
-                sb.Append((i +1) + " -> ");
+                sb.Append((i) + " -> ");
                 foreach (Adjacencia aresta in listaAdj[i])
                 {
                     sb.Append((aresta.getDestino()) + " Peso: " + (aresta.getPeso()) + " | ");
