@@ -107,7 +107,7 @@ namespace GrafosTrabalho
                 {
                     foreach(Adjacencia a in listaAdj[i])
                     {
-                        if (a.getDestino() == aresta.getDestino() || a.getOrigem() == aresta.getOrigem())
+                        if (a.getDestino() == aresta.getDestino() || a.getDestino() == aresta.getOrigem() || a.getOrigem() == aresta.getDestino() || a.getOrigem() == aresta.getOrigem())
                         {
                             adj.Add(a);
                         }
