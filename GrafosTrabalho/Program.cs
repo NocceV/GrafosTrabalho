@@ -510,7 +510,6 @@ namespace GrafosTrabalho
 
                 Console.Clear();
                 int vertice = informeVertice();
-
                 List<int> adj = grafo.VerticesAdjacentes(vertice);
 
                 if (adj == null || adj.Count == 0)
@@ -1006,7 +1005,7 @@ namespace GrafosTrabalho
                         }
                         else
                         {
-                            Console.WriteLine($"Menor distância para {i}: {distancias[i]}");
+                            Console.WriteLine($"Menor distância para {i}= {distancias[i]}");
                             Console.WriteLine($"Caminho: {caminhos[i]}");
                         }
                     }

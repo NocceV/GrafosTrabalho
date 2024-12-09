@@ -3,13 +3,10 @@
 Acesso rápido: https://pucminas.instructure.com/courses/204452/assignments/1050292?module_item_id=4804807
 # Parte 1
 # UML Classes e Interfaces
-<img src="https://github.com/user-attachments/assets/9d4d9a55-94bb-4cf6-94e1-be02da62aa24" width="900" height="600" />
-
-# UML Program - Main
-![image](https://github.com/user-attachments/assets/e3000db3-dca8-4a6b-af4b-dee8705142e4)
+<img src="https://github.com/user-attachments/assets/b10ef59f-10a4-4592-ae51-e51d9a1eee64" width="900" height="600" />
 
 # Plano do sistema - Main
-![PlanoSistema-GrafosTrabalho](https://github.com/user-attachments/assets/5b2d7e77-2293-448c-8020-fd7df7d61298)
+![WhatsApp Image 2024-12-08 at 23 44 54](https://github.com/user-attachments/assets/378e7299-7750-4b2e-9c93-d537831b3f6f)
 
 
 # Arquivo UML
