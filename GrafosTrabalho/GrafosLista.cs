@@ -98,11 +98,16 @@ namespace GrafosTrabalho
                 {
                     throw new ArgumentOutOfRangeException(nameof(aresta), "A origem da aresta está fora dos limites da lista de adjacência.");
                 }
-
                 List<Adjacencia> adj = new List<Adjacencia>();
                 for(int i = 0; i < listaAdj.Length; i++)
                 {
-                    adj.AddRange(listaAdj[i].Where(a => a.getDestino() == aresta.getDestino() || a.getOrigem() == aresta.getOrigem()));
+                    foreach(Adjacencia a in listaAdj[i])
+                    {
+                        if (a.getDestino() == aresta.getDestino() || a.getOrigem() == aresta.getOrigem())
+                        {
+                            adj.Add(a);
+                        }
+                    }
                 }
                 return adj;
             }
