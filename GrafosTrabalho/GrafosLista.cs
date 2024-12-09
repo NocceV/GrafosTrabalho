@@ -68,7 +68,7 @@ namespace GrafosTrabalho
                 sb.Append((i +1) + " -> ");
                 foreach (Adjacencia aresta in listaAdj[i])
                 {
-                    sb.Append((aresta.getDestino()+1) + " Peso: " + (aresta.getPeso() +1) + " | ");
+                    sb.Append((aresta.getDestino()) + " Peso: " + (aresta.getPeso()) + " | ");
                 }
                 sb.AppendLine();
             }
