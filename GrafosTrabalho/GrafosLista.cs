@@ -68,11 +68,7 @@ namespace GrafosTrabalho
                 sb.Append((i +1) + " -> ");
                 foreach (Adjacencia aresta in listaAdj[i])
                 {
-<<<<<<< HEAD
                     sb.Append((aresta.getDestino()) + " Peso: " + (aresta.getPeso()) + " | ");
-=======
-                    sb.Append((aresta.getDestino()+1) + " Peso: " + aresta.getPeso() + " | ");
->>>>>>> refs/remotes/origin/master
                 }
                 sb.AppendLine();
             }
@@ -107,7 +103,7 @@ namespace GrafosTrabalho
                 {
                     foreach(Adjacencia a in listaAdj[i])
                     {
-                        if (a.getDestino() == aresta.getDestino() || a.getDestino() == aresta.getOrigem() || a.getOrigem() == aresta.getDestino() || a.getOrigem() == aresta.getOrigem())
+                        if (Verificar(a, aresta))
                         {
                             adj.Add(a);
                         }
@@ -121,7 +117,17 @@ namespace GrafosTrabalho
                 return null;
             }
         }
-
+        public bool Verificar(Adjacencia vertice, Adjacencia vertice2)
+        {
+            if (vertice.getDestino() == vertice2.getDestino() || 
+                vertice.getDestino() == vertice2.getOrigem() || 
+                vertice.getOrigem() == vertice2.getDestino() || 
+                vertice.getOrigem() == vertice2.getOrigem())
+            {
+                return true;
+            }
+            return false;
+        }
         /// <summary>
         /// Imprimir vertices adjacentes
         /// </summary>
